@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 public class UserDTO {
 
-    private Integer id;
+    private Long id;
     @NotNull @NotBlank @Size(min = 3, max = 12)
     private String login;
     @NotNull @NotBlank @Email
@@ -22,11 +22,11 @@ public class UserDTO {
     @NotNull @NotBlank @Size(min = 3)
     private String lastName;
 
-    public Integer getId() {
+    public Long getId() {
 
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
 
         this.id = id;
     }

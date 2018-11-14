@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CoachDTO {
 
-    private Integer id;
+    private Long id;
     @NotNull @NotBlank
     private String registrationNumber;
     @NotNull @NotBlank
@@ -18,11 +18,11 @@ public class CoachDTO {
     private String model;
     private List<Tour> tours = new ArrayList<>();
 
-    public Integer getId() {
+    public Long getId() {
 
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
 
         this.id = id;
     }

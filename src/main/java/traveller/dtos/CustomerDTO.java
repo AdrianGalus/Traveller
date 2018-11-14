@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CustomerDTO {
 
-    private Integer id;
+    private Long id;
     @NotNull @NotBlank @Size(min = 3)
     private String firstName;
     @NotNull @NotBlank @Size(min = 3)
@@ -20,11 +20,11 @@ public class CustomerDTO {
     private String email;
     private List<Tour> tours;
 
-    public Integer getId() {
+    public Long getId() {
 
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
 
         this.id = id;
     }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class TourDTO {
 
-    private Integer id;
+    private Long id;
     @NotNull @NotBlank
     private Coach coach;
     @NotNull @NotBlank
@@ -24,11 +24,11 @@ public class TourDTO {
     @NotNull @NotBlank
     private List<Driver> drivers;
 
-    public Integer getId() {
+    public Long getId() {
 
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
 
         this.id = id;
     }

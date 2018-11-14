@@ -8,7 +8,7 @@ public class UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     @Column(name = "first_name")
     private String firstName;
     @Column(name = "last_name")
@@ -16,11 +16,11 @@ public class UserDetails {
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private User user;
 
-    public Integer getId() {
+    public Long getId() {
 
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
 
         this.id = id;
     }
