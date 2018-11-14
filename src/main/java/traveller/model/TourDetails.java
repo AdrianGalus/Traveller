@@ -1,12 +1,19 @@
 package traveller.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "tours_details")
 public class TourDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Customer customer;
+    @ManyToMany
     private List<Driver> drivers = new ArrayList<>();
 
     public Integer getId() {
