@@ -1,6 +1,7 @@
 package traveller.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -13,6 +14,8 @@ public class Customer {
     private String fistName;
     @Column(nullable = false)
     private String lastName;
+    @OneToMany(mappedBy = "customer")
+    private List<Tour> tours;
 
     public Long getId() {
 
@@ -37,5 +40,13 @@ public class Customer {
     public void setLastName(String lastName) {
 
         this.lastName = lastName;
+    }
+    public List<Tour> getTours() {
+
+        return tours;
+    }
+    public void setTours(List<Tour> tours) {
+
+        this.tours = tours;
     }
 }
