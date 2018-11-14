@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 

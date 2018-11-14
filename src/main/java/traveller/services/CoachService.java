@@ -26,7 +26,6 @@ public class CoachService {
         Coach coach = new Coach();
         coach.setRegistrationNumber(form.getRegistrationNumber());
         coachRepository.save(coach);
-
         CoachDetails coachDetails = new CoachDetails();
         coachDetails.setCoach(coach);
         coachDetails.setMark(form.getMark());
