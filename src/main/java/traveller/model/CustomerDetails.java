@@ -1,13 +1,21 @@
 package traveller.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "customers_details")
 public class CustomerDetails {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false, unique = true)
     private String phone;
+    @Column(nullable = false, unique = true)
     private String email;
+    @OneToMany
     private List<Tour> tours = new ArrayList<>();
 
     public Integer getId() {
