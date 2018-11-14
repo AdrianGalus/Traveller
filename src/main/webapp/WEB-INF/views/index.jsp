@@ -12,13 +12,13 @@
         <h3>Hello ${loggedUser.login}!</h3>
         <a href="/logout">Logout</a>
         <br/>
-        <a href="">Add driver</a>
+        <a href="/driver/add">Add driver</a>
         <br/>
-        <a href="">Add coach</a>
+        <a href="/coach/add">Add coach</a>
         <br/>
-        <a href="">Add customer</a>
+        <a href="/customer/add">Add customer</a>
         <br/>
-        <a href="">Add tour</a>
+        <a href="/tour/add">Add tour</a>
         <br/>
     </c:if>
 </body>
