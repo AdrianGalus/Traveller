@@ -5,6 +5,7 @@ import traveller.model.Coach;
 import traveller.model.Customer;
 import traveller.model.Driver;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -23,6 +24,8 @@ public class TourDTO {
     private Customer customer;
     @NotNull @NotBlank
     private List<Driver> drivers;
+    private Double price;
+    private String distance;
 
     public Long getId() {
 
@@ -79,5 +82,21 @@ public class TourDTO {
     public void setDrivers(List<Driver> drivers) {
 
         this.drivers = drivers;
+    }
+    public Double getPrice() {
+
+        return price;
+    }
+    public void setPrice(Double price) {
+
+        this.price = price;
+    }
+    public String getDistance() {
+
+        return distance;
+    }
+    public void setDistance(String distance) {
+
+        this.distance = distance;
     }
 }
