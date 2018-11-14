@@ -3,7 +3,7 @@ package traveller.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "entities")
+@Table(name = "customers")
 public class Customer {
 
     @Id
