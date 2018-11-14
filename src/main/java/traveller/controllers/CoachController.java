@@ -29,7 +29,7 @@ public class CoachController {
     }
     @PostMapping("/add")
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
-            @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result, HttpSession session) {
+                                @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
 
         if(loggedUSer == null) {
             return "redirect:/home";
