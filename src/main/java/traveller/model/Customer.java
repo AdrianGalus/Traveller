@@ -1,9 +1,17 @@
 package traveller.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "entities")
 public class Customer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @Column(nullable = false)
     private String fistName;
+    @Column(nullable = false)
     private String lastName;
 
     public Integer getId() {
