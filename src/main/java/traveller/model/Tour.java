@@ -2,6 +2,7 @@ package traveller.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "tours")
@@ -10,7 +11,7 @@ public class Tour {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     private Coach coach;
     @Column(nullable = false)
     private String destination;
@@ -18,6 +19,10 @@ public class Tour {
     private LocalDateTime departureDate;
     @Column(nullable = false)
     private LocalDateTime arrivalDate;
+    @ManyToOne
+    private Customer customer;
+    @ManyToMany(mappedBy = "tours")
+    private List<Driver> drivers;
 
     public Long getId() {
 
@@ -58,5 +63,21 @@ public class Tour {
     public void setArrivalDate(LocalDateTime arrivalDate) {
 
         this.arrivalDate = arrivalDate;
+    }
+    public Customer getCustomer() {
+
+        return customer;
+    }
+    public void setCustomer(Customer customer) {
+
+        this.customer = customer;
+    }
+    public List<Driver> getDrivers() {
+
+        return drivers;
+    }
+    public void setDrivers(List<Driver> drivers) {
+
+        this.drivers = drivers;
     }
 }
