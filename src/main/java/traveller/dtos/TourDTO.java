@@ -4,8 +4,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import traveller.model.Coach;
 import traveller.model.Customer;
 import traveller.model.Driver;
-
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
