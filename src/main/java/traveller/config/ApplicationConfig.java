@@ -48,7 +48,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     @Bean
     public LocalEntityManagerFactoryBean entityManagerFactory() {
         LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-        factoryBean.setPersistenceUnitName("noticeBoardPU");
+        factoryBean.setPersistenceUnitName("travellerPU");
         return factoryBean;
     }
     @Bean
