@@ -12,9 +12,10 @@ public class CoachDTO {
     private Long id;
     @NotNull @NotBlank
     private String registrationNumber;
-    @NotNull @NotBlank
     private List<Driver> drivers = new ArrayList<>();
+    @NotNull @NotBlank
     private String mark;
+    @NotNull @NotBlank
     private String model;
     private List<Tour> tours = new ArrayList<>();
 
