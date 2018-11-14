@@ -1,8 +1,6 @@
 package traveller.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "drivers_details")
@@ -15,8 +13,8 @@ public class DriverDetails {
     private String phone;
     @Column(nullable = false, unique = true)
     private String email;
-    @ManyToMany
-    private List<Tour> tours = new ArrayList<>();
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
+    private Driver driver;
 
     public Long getId() {
 
@@ -42,13 +40,12 @@ public class DriverDetails {
 
         this.email = email;
     }
+    public Driver getDriver() {
 
-    public List<Tour> getTours() {
-
-        return tours;
+        return driver;
     }
-    public void setTours(List<Tour> tours) {
+    public void setDriver(Driver driver) {
 
-        this.tours = tours;
+        this.driver = driver;
     }
 }
