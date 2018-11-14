@@ -1,6 +1,7 @@
 package traveller.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Driver {
     @ManyToOne
     private Coach coach;
     @ManyToMany
-    private List<Tour> tours;
+    private List<Tour> tours = new ArrayList<>();
 
     public Long getId() {
 
