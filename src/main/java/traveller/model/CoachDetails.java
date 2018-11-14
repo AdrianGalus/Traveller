@@ -1,8 +1,6 @@
 package traveller.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "coaches_details")
@@ -15,8 +13,6 @@ public class CoachDetails {
     private String model;
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Coach coach;
-    @OneToMany
-    private List<Tour> tours = new ArrayList<>();
 
     public Long getId() {
 
@@ -49,13 +45,5 @@ public class CoachDetails {
     public void setCoach(Coach coach) {
 
         this.coach = coach;
-    }
-    public List<Tour> getTours() {
-
-        return tours;
-    }
-    public void setTours(List<Tour> tours) {
-
-        this.tours = tours;
     }
 }
