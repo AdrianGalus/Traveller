@@ -1,8 +1,15 @@
 package traveller.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users_credentials")
 public class UserCredentials {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @OneToOne(optional = false)
     private User user;
     private String password;
 
