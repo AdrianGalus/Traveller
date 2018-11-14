@@ -1,13 +1,22 @@
 package traveller.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Entity
+@Table(name = "tours")
 public class Tour {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Coach coach;
+    @Column(nullable = false)
     private String destination;
+    @Column(nullable = false)
     private LocalDateTime departureDate;
+    @Column(nullable = false)
     private LocalDateTime arrivalDate;
 
     public Integer getId() {
