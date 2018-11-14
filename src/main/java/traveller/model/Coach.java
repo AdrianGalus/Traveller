@@ -1,6 +1,5 @@
 package traveller.model;
 
-import org.hibernate.annotations.JoinFormula;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,10 +16,7 @@ public class Coach {
     @OneToMany(mappedBy = "coach", fetch = FetchType.EAGER)
     private List<Driver> drivers = new ArrayList<>();
     @OneToMany(mappedBy = "coach")
-    private List<Tour> allTours;
-    @OneToMany(mappedBy = "coach")
-    @JoinFormula("SELECT t FROM Tour t WHERE t.coachId = :id AND t.arrivalDate > now()")
-    private List<Tour> plannedTours;
+    private List<Tour> tours = new ArrayList<>();
 
     public Long getId() {
 
@@ -46,20 +42,12 @@ public class Coach {
 
         this.drivers = drivers;
     }
-    public List<Tour> getAllTours() {
+    public List<Tour> getTours() {
 
-        return allTours;
+        return tours;
     }
-    public void setAllTours(List<Tour> allTours) {
+    public void setTours(List<Tour> tours) {
 
-        this.allTours = allTours;
-    }
-    public List<Tour> getPlannedTours() {
-
-        return plannedTours;
-    }
-    public void setPlannedTours(List<Tour> plannedTours) {
-
-        this.plannedTours = plannedTours;
+        this.tours = tours;
     }
 }
