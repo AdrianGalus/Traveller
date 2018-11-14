@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.UserDTO;
 import traveller.dtos.UserLoginDTO;
-import traveller.services.UserService;
+import traveller.services.LoginService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,7 +16,7 @@ import javax.validation.Valid;
 public class LoginController {
 
     @Autowired
-    UserService userService;
+    LoginService loginService;
 
     @GetMapping
     public String login(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
@@ -37,12 +37,12 @@ public class LoginController {
         if(result.hasErrors()) {
             return "login";
         }
-        boolean correctCredentials = userService.checkCredentials(form.getLogin(), form.getPassword());
+        boolean correctCredentials = loginService.checkCredentials(form.getLogin(), form.getPassword());
         if(!correctCredentials) {
             result.rejectValue("password", "errors.invalid", "Login i/lub hasło nie są poprawne");
             return "login";
         }
-        UserDTO user = userService.login(form.getLogin());
+        UserDTO user = loginService.login(form.getLogin());
         session.setAttribute("loggedUser", user);
         return "redirect:/home";
     }
