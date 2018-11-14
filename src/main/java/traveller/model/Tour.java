@@ -2,6 +2,7 @@ package traveller.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,7 +23,7 @@ public class Tour {
     @ManyToOne
     private Customer customer;
     @ManyToMany(mappedBy = "tours")
-    private List<Driver> drivers;
+    private List<Driver> drivers = new ArrayList<>();
 
     public Long getId() {
 
