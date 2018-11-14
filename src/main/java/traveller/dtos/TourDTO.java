@@ -1,19 +1,27 @@
 package traveller.dtos;
 
+import org.hibernate.validator.constraints.NotBlank;
 import traveller.model.Coach;
 import traveller.model.Customer;
 import traveller.model.Driver;
+
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
 public class TourDTO {
 
     private Integer id;
+    @NotNull @NotBlank
     private Coach coach;
+    @NotNull @NotBlank
     private String destination;
+    @NotNull @NotBlank
     private LocalDateTime departureTime;
+    @NotNull @NotBlank
     private LocalDateTime arrivalTime;
     private Customer customer;
+    @NotNull @NotBlank
     private List<Driver> drivers;
 
     public Integer getId() {
