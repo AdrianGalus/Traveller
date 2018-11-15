@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Coach</title>
+    <title>New coach</title>
 </head>
 <body>
     Add new coach to our fleet!
