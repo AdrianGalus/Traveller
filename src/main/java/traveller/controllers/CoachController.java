@@ -24,7 +24,7 @@ public class CoachController {
             return "redirect:/home";
         }
         model.addAttribute("coachForm", new CoachDTO());
-        return "coach";
+        return "addcoach";
     }
     @PostMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
@@ -34,12 +34,12 @@ public class CoachController {
             return "redirect:/home";
         }
         if(result.hasErrors()) {
-            return "coach";
+            return "addcoach";
         }
         boolean existedRegisterNumber = coachService.checkRegistrationNumber(form.getRegistrationNumber());
         if(existedRegisterNumber) {
             result.rejectValue("registrationNumber", "errors.invalid", "Ten numer rejestracyjny już jest w bazie");
-            return "coach";
+            return "addcoach";
         }
         coachService.addCoach(form);
         return "redirect:/home";
