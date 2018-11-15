@@ -2,7 +2,6 @@ package traveller.dtos;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import traveller.model.Tour;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -18,7 +17,7 @@ public class CustomerDTO {
     private String phone;
     @NotNull @NotBlank @Email
     private String email;
-    private List<Tour> tours;
+    private List<Long> toursId;
 
     public Long getId() {
 
@@ -60,12 +59,12 @@ public class CustomerDTO {
 
         this.email = email;
     }
-    public List<Tour> getTours() {
+    public List<Long> getToursId() {
 
-        return tours;
+        return toursId;
     }
-    public void setTours(List<Tour> tours) {
+    public void setToursId(List<Long> toursId) {
 
-        this.tours = tours;
+        this.toursId = toursId;
     }
 }
