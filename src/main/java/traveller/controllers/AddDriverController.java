@@ -11,7 +11,7 @@ import traveller.services.AddDriverService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/adddriver")
+@RequestMapping("/add-driver")
 public class AddDriverController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AddDriverController {
             return "redirect:/home";
         }
         model.addAttribute("driverForm", new DriverDTO());
-        return "adddriver";
+        return "add-driver";
     }
     @PostMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
@@ -34,7 +34,7 @@ public class AddDriverController {
             return "redirect:/home";
         }
         if(result.hasErrors()) {
-            return "adddriver";
+            return "add-driver";
         }
         addDriverService.addDriver(form);
         return "redirect:/home";
