@@ -2,9 +2,6 @@ package traveller.dtos;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
-import traveller.model.Coach;
-import traveller.model.Customer;
-import traveller.model.Driver;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,15 +11,15 @@ public class TourDTO {
     private static final String DATE_FORMAT = "uuuu-MM-dd HH:mm";
 
     private Long id;
-    private Coach coach;
+    private Long coachId;
     @NotNull @NotBlank
     private String destination;
     @NotNull @DateTimeFormat(pattern = DATE_FORMAT)
     private LocalDateTime departureTime;
     @NotNull @DateTimeFormat(pattern = DATE_FORMAT)
     private LocalDateTime arrivalTime;
-    private Customer customer;
-    private List<Driver> drivers;
+    private Long customerId;
+    private List<Long> driversId;
     private Double price;
     private Double distance;
 
@@ -34,13 +31,13 @@ public class TourDTO {
 
         this.id = id;
     }
-    public Coach getCoach() {
+    public Long getCoachId() {
 
-        return coach;
+        return coachId;
     }
-    public void setCoach(Coach coach) {
+    public void setCoachId(Long coachId) {
 
-        this.coach = coach;
+        this.coachId = coachId;
     }
     public String getDestination() {
 
@@ -66,21 +63,21 @@ public class TourDTO {
 
         this.arrivalTime = arrivalTime;
     }
-    public Customer getCustomer() {
+    public Long getCustomerId() {
 
-        return customer;
+        return customerId;
     }
-    public void setCustomer(Customer customer) {
+    public void setCustomerId(Long customerId) {
 
-        this.customer = customer;
+        this.customerId = customerId;
     }
-    public List<Driver> getDrivers() {
+    public List<Long> getDriversId() {
 
-        return drivers;
+        return driversId;
     }
-    public void setDrivers(List<Driver> drivers) {
+    public void setDriversId(List<Long> driversId) {
 
-        this.drivers = drivers;
+        this.driversId = driversId;
     }
     public Double getPrice() {
 
