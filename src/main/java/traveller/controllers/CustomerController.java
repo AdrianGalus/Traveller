@@ -27,15 +27,15 @@ public class CustomerController {
             return "redirect:/home";
         }
         model.addAttribute("customerForm", new CustomerDTO());
-        return "customer";
+        return "addcustomer";
     }
     public String addCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                              @ModelAttribute("coachForm") @Valid CustomerDTO form, BindingResult result) {
+                              @ModelAttribute("customerForm") @Valid CustomerDTO form, BindingResult result) {
         if(loggedUser == null) {
             return "redirect:/home";
         }
         if(result.hasErrors()) {
-            return "driver";
+            return "addcustomer";
         }
         customerService.addCustomer(form);
         return "redirect:/home";
