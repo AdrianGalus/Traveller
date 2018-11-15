@@ -25,7 +25,7 @@ public class DriverController {
             return "redirect:/home";
         }
         model.addAttribute("driverForm", new DriverDTO());
-        return "driver";
+        return "adddriver";
     }
     @PostMapping("/add")
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
@@ -35,7 +35,7 @@ public class DriverController {
             return "redirect:/home";
         }
         if(result.hasErrors()) {
-            return "driver";
+            return "adddriver";
         }
         driverService.addDriver(form);
         return "redirect:/home";
