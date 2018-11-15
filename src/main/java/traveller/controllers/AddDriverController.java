@@ -17,7 +17,7 @@ public class AddDriverController {
     @Autowired
     AddDriverService addDriverService;
 
-    @GetMapping("/add")
+    @GetMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
@@ -26,7 +26,7 @@ public class AddDriverController {
         model.addAttribute("driverForm", new DriverDTO());
         return "adddriver";
     }
-    @PostMapping("/add")
+    @PostMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
                                 @ModelAttribute("driverForm") @Valid DriverDTO form, BindingResult result) {
 
