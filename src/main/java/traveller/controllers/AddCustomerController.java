@@ -11,7 +11,7 @@ import traveller.services.AddCustomerService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/addcustomer")
+@RequestMapping("/add-customer")
 public class AddCustomerController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AddCustomerController {
             return "redirect:/home";
         }
         model.addAttribute("customerForm", new CustomerDTO());
-        return "addcustomer";
+        return "add-customer";
     }
     @PostMapping
     public String addCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
@@ -33,7 +33,7 @@ public class AddCustomerController {
             return "redirect:/home";
         }
         if(result.hasErrors()) {
-            return "addcustomer";
+            return "add-customer";
         }
         addCustomerService.addCustomer(form);
         return "redirect:/home";
