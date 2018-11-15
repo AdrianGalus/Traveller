@@ -8,17 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/coach")
+@RequestMapping("/addcoach")
 public class CoachController {
 
     @Autowired
     CoachService coachService;
 
-    @GetMapping("/add")
+    @GetMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
@@ -27,7 +26,7 @@ public class CoachController {
         model.addAttribute("coachForm", new CoachDTO());
         return "coach";
     }
-    @PostMapping("/add")
+    @PostMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
                                 @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
 
