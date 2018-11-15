@@ -11,7 +11,7 @@ import traveller.services.AddCoachService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/addcoach")
+@RequestMapping("/add-coach")
 public class AddCoachController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class AddCoachController {
             return "redirect:/home";
         }
         model.addAttribute("coachForm", new CoachDTO());
-        return "addcoach";
+        return "add-coach";
     }
     @PostMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
@@ -34,12 +34,12 @@ public class AddCoachController {
             return "redirect:/home";
         }
         if(result.hasErrors()) {
-            return "addcoach";
+            return "add-coach";
         }
         boolean existedRegisterNumber = addCoachService.checkRegistrationNumber(form.getRegistrationNumber());
         if(existedRegisterNumber) {
             result.rejectValue("registrationNumber", "errors.invalid", "Ten numer rejestracyjny już jest w bazie");
-            return "addcoach";
+            return "add-coach";
         }
         addCoachService.addCoach(form);
         return "redirect:/home";
