@@ -1,6 +1,7 @@
 package traveller.dtos;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 import traveller.model.Coach;
 import traveller.model.Customer;
 import traveller.model.Driver;
@@ -10,20 +11,20 @@ import java.util.List;
 
 public class TourDTO {
 
+    private static final String DATE_FORMAT = "uuuu-MM-dd HH:mm";
+
     private Long id;
-    @NotNull @NotBlank
     private Coach coach;
     @NotNull @NotBlank
     private String destination;
-    @NotNull @NotBlank
+    @NotNull @DateTimeFormat(pattern = DATE_FORMAT)
     private LocalDateTime departureTime;
-    @NotNull @NotBlank
+    @NotNull @DateTimeFormat(pattern = DATE_FORMAT)
     private LocalDateTime arrivalTime;
     private Customer customer;
-    @NotNull @NotBlank
     private List<Driver> drivers;
     private Double price;
-    private String distance;
+    private Double distance;
 
     public Long getId() {
 
@@ -89,11 +90,11 @@ public class TourDTO {
 
         this.price = price;
     }
-    public String getDistance() {
+    public Double getDistance() {
 
         return distance;
     }
-    public void setDistance(String distance) {
+    public void setDistance(Double distance) {
 
         this.distance = distance;
     }
