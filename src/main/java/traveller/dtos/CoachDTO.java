@@ -68,4 +68,8 @@ public class CoachDTO {
 
         this.tours = tours;
     }
+    @Override
+    public String toString() {
+        return registrationNumber + " " + mark + " " + model;
+    }
 }
