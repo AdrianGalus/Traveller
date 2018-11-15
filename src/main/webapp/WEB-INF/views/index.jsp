@@ -12,21 +12,21 @@
         <h3>Hello ${loggedUser.login}!</h3>
         <a href="/logout">Logout</a>
         <br/>
-        <a href="/adddriver">Add driver</a>
-        <a href="/editdriver">Edit driver</a>
-        <a href="/deletedriver">Delete driver</a>
+        <a href="/add-driver">Add driver</a>
+        <a href="/edit-driver">Edit driver</a>
+        <a href="/delete-driver">Delete driver</a>
         <br/>
-        <a href="/addcoach">Add coach</a>
-        <a href="/editcoach">Edit coach</a>
-        <a href="/deletecoach">Delete coach</a>
+        <a href="/add-coach">Add coach</a>
+        <a href="/edit-coach">Edit coach</a>
+        <a href="/delete-coach">Delete coach</a>
         <br/>
-        <a href="/addcustomer">Add customer</a>
-        <a href="/editcustomer">Edit customer</a>
-        <a href="/delete">Delete customer</a>
+        <a href="/add-customer">Add customer</a>
+        <a href="/edit-customer">Edit customer</a>
+        <a href="/delete-customer">Delete customer</a>
         <br/>
-        <a href="/addtour">Add tour</a>
-        <a href="/edittour">Edit tour</a>
-        <a href="/deletetour">Delete tour</a>
+        <a href="/check-tour">Add tour</a>
+        <a href="/edit-tour">Edit tour</a>
+        <a href="/delete-tour">Delete tour</a>
         <br/>
     </c:if>
 </body>
