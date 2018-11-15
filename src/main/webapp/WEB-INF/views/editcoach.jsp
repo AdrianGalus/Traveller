@@ -6,6 +6,6 @@
 </head>
 <body>
     Select coach to edit
-    
+
 </body>
 </html>

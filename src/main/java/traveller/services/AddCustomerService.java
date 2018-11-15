@@ -9,7 +9,7 @@ import traveller.repositories.CustomerDetailsRepository;
 import traveller.repositories.CustomerRepoistory;
 
 @Service
-public class CustomerService {
+public class AddCustomerService {
 
     @Autowired
     CustomerRepoistory customerRepoistory;

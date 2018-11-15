@@ -9,7 +9,7 @@ import traveller.repositories.CoachDetailsRepository;
 import traveller.repositories.CoachRepository;
 
 @Service
-public class CoachService {
+public class AddCoachService {
 
     @Autowired
     CoachRepository coachRepository;

@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import traveller.dtos.CustomerDTO;
 import traveller.dtos.UserDTO;
-import traveller.services.CustomerService;
+import traveller.services.AddCustomerService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/customer")
-public class CustomerController {
+@RequestMapping("/addcustomer")
+public class AddCustomerController {
 
     @Autowired
-    CustomerService customerService;
+    AddCustomerService addCustomerService;
 
     @GetMapping
     public String addCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
@@ -37,7 +37,7 @@ public class CustomerController {
         if(result.hasErrors()) {
             return "addcustomer";
         }
-        customerService.addCustomer(form);
+        addCustomerService.addCustomer(form);
         return "redirect:/home";
     }
 }

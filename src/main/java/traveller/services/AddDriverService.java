@@ -9,7 +9,7 @@ import traveller.repositories.DriverDetailsRepository;
 import traveller.repositories.DriverRepository;
 
 @Service
-public class DriverService {
+public class AddDriverService {
 
     @Autowired
     DriverRepository driverRepository;

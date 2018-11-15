@@ -7,15 +7,15 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.UserDTO;
-import traveller.services.CoachService;
+import traveller.services.AddCoachService;
 import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/addcoach")
-public class CoachController {
+public class AddCoachController {
 
     @Autowired
-    CoachService coachService;
+    AddCoachService addCoachService;
 
     @GetMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
@@ -36,12 +36,12 @@ public class CoachController {
         if(result.hasErrors()) {
             return "addcoach";
         }
-        boolean existedRegisterNumber = coachService.checkRegistrationNumber(form.getRegistrationNumber());
+        boolean existedRegisterNumber = addCoachService.checkRegistrationNumber(form.getRegistrationNumber());
         if(existedRegisterNumber) {
             result.rejectValue("registrationNumber", "errors.invalid", "Ten numer rejestracyjny już jest w bazie");
             return "addcoach";
         }
-        coachService.addCoach(form);
+        addCoachService.addCoach(form);
         return "redirect:/home";
     }
 }
