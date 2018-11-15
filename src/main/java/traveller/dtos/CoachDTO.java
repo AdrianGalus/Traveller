@@ -1,8 +1,6 @@
 package traveller.dtos;
 
 import org.hibernate.validator.constraints.NotBlank;
-import traveller.model.Driver;
-import traveller.model.Tour;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,12 +10,12 @@ public class CoachDTO {
     private Long id;
     @NotNull @NotBlank
     private String registrationNumber;
-    private List<Driver> drivers = new ArrayList<>();
+    private List<Long> driversId = new ArrayList<>();
     @NotNull @NotBlank
     private String mark;
     @NotNull @NotBlank
     private String model;
-    private List<Tour> tours = new ArrayList<>();
+    private List<Long> toursId = new ArrayList<>();
 
     public Long getId() {
 
@@ -35,13 +33,13 @@ public class CoachDTO {
 
         this.registrationNumber = registrationNumber;
     }
-    public List<Driver> getDrivers() {
+    public List<Long> getDriversId() {
 
-        return drivers;
+        return driversId;
     }
-    public void setDrivers(List<Driver> drivers) {
+    public void setDriversId(List<Long> driversId) {
 
-        this.drivers = drivers;
+        this.driversId = driversId;
     }
     public String getMark() {
 
@@ -51,7 +49,6 @@ public class CoachDTO {
 
         this.mark = mark;
     }
-
     public String getModel() {
 
         return model;
@@ -60,16 +57,17 @@ public class CoachDTO {
 
         this.model = model;
     }
-    public List<Tour> getTours() {
+    public List<Long> getToursId() {
 
-        return tours;
+        return toursId;
     }
-    public void setTours(List<Tour> tours) {
+    public void setToursId(List<Long> toursId) {
 
-        this.tours = tours;
+        this.toursId = toursId;
     }
     @Override
     public String toString() {
+
         return registrationNumber + " " + mark + " " + model;
     }
 }
