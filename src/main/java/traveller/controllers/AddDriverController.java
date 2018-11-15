@@ -11,7 +11,7 @@ import traveller.services.AddDriverService;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/addriver")
+@RequestMapping("/adddriver")
 public class AddDriverController {
 
     @Autowired
