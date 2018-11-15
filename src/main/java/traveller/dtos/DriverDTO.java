@@ -2,8 +2,6 @@ package traveller.dtos;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
-import traveller.model.Coach;
-import traveller.model.Tour;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
@@ -15,8 +13,8 @@ public class DriverDTO {
     private String firstName;
     @NotNull @NotBlank @Size(min = 3)
     private String lastName;
-    private Coach coach;
-    private List<Tour> tours;
+    private Long coachId;
+    private List<Long> toursId;
     @NotNull @NotBlank
     private String phone;
     @NotNull @NotBlank @Email
@@ -46,13 +44,13 @@ public class DriverDTO {
 
         this.lastName = lastName;
     }
-    public Coach getCoach() {
+    public Long getCoachId() {
 
-        return coach;
+        return coachId;
     }
-    public void setCoach(Coach coach) {
+    public void setCoachId(Long coachId) {
 
-        this.coach = coach;
+        this.coachId = coachId;
     }
     public String getPhone() {
 
@@ -70,12 +68,12 @@ public class DriverDTO {
 
         this.email = email;
     }
-    public List<Tour> getTours() {
+    public List<Long> getToursId() {
 
-        return tours;
+        return toursId;
     }
-    public void setTours(List<Tour> tours) {
+    public void setToursId(List<Long> toursId) {
 
-        this.tours = tours;
+        this.toursId = toursId;
     }
 }
