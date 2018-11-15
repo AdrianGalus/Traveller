@@ -12,7 +12,7 @@
         <h3>Hello ${loggedUser.login}!</h3>
         <a href="/logout">Logout</a>
         <br/>
-        <a href="/adddriver">Add driver</a>
+        <a href="/addriver">Add driver</a>
         <a href="/editdriver">Edit driver</a>
         <a href="deletedriver">Delete driver</a>
         <br/>
