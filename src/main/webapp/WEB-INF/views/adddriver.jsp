@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Driver</title>
+    <title>New driver</title>
 </head>
 <body>
     Add new driver to our staff!
