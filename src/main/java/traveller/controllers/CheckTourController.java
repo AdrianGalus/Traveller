@@ -6,9 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
+import traveller.dtos.CustomerDTO;
 import traveller.dtos.TourDTO;
 import traveller.dtos.UserDTO;
 import traveller.services.CheckTourService;
+import traveller.services.CustomerService;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
@@ -19,6 +22,14 @@ public class CheckTourController {
 
     @Autowired
     CheckTourService checkTourService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    @ModelAttribute("customers")
+    public List<CustomerDTO> customers() {
+        return customerService.showAllCustomers();
+    }
 
     @GetMapping
     public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
@@ -44,7 +55,7 @@ public class CheckTourController {
             return "no-coach";
         }
         else {
-            model.addAttribute("selectCoach", form);
+            model.addAttribute("selectCoach", new CoachDTO());
             model.addAttribute("availableCoaches", coaches);
             model.addAttribute("tourFormId", "tourForm" + System.identityHashCode(form));
             session.setAttribute("tourForm" + System.identityHashCode(form), form);
