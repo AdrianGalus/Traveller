@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ShowAllCustomersService {
+public class CustomerService {
 
     @Autowired
     CustomerDetailsRepository customerDetailsRepository;
