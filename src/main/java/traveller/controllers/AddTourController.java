@@ -18,7 +18,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/add-tour")
-public class CheckTourController {
+public class AddTourController {
 
     @Autowired
     CheckTourService checkTourService;
