@@ -68,6 +68,13 @@ public class CoachDTO {
     @Override
     public String toString() {
 
-        return registrationNumber + " " + mark + " " + model;
+        return "CoachDTO{" +
+                "id=" + id +
+                ", registrationNumber='" + registrationNumber + '\'' +
+                ", driversId=" + driversId +
+                ", mark='" + mark + '\'' +
+                ", model='" + model + '\'' +
+                ", toursId=" + toursId +
+                '}';
     }
 }
