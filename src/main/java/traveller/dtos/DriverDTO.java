@@ -78,7 +78,14 @@ public class DriverDTO {
     }
     @Override
     public String toString() {
-
-        return firstName + " " + lastName + " phone: " + phone + " email: " + email;
+        return "DriverDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", coachId=" + coachId +
+                ", toursId=" + toursId +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
