@@ -28,7 +28,7 @@
         <a href="/delete-customer">Delete customer</a>
         <br/>
         <a href="/show-all-tours">Show all tours</a>
-        <a href="/check-tour">Add tour</a>
+        <a href="/add-tour/check">Add tour</a>
         <a href="/edit-tour">Edit tour</a>
         <a href="/delete-tour">Delete tour</a>
         <br/>
