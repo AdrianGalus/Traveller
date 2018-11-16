@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import traveller.dtos.UserDTO;
-import traveller.services.ShowAllDriversService;
+import traveller.services.DriverService;
 
 @Controller
 @RequestMapping("/show-all-drivers")
 public class ShowAllDriversController {
 
     @Autowired
-    ShowAllDriversService showAllDriversService;
+    DriverService driverService;
     @GetMapping
     public String showAllCoaches(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
                                  Model model) {
@@ -22,7 +22,7 @@ public class ShowAllDriversController {
         if(loggedUser == null) {
             return "redirect:/home";
         }
-        model.addAttribute("allDrivers", showAllDriversService.showAllDrivers());
+        model.addAttribute("allDrivers", driverService.showAllDrivers());
         return "all-drivers";
     }
 }
