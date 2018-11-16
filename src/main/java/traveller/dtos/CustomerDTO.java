@@ -67,4 +67,9 @@ public class CustomerDTO {
 
         this.toursId = toursId;
     }
+    @Override
+    public String toString() {
+
+        return firstName + " " + lastName + " phone: " + phone + " email: " + email;
+    }
 }
