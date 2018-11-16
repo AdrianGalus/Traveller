@@ -17,15 +17,15 @@ public class CheckTourService {
     public List<CoachDTO> loadAvailableCoaches() {
 
         List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
-        List<CoachDTO> coachesDTO = new ArrayList<>();
+        List<CoachDTO> coaches = new ArrayList<>();
         for(CoachDetails c : loadedCoaches) {
-            CoachDTO coachDTO = new CoachDTO();
-            coachDTO.setId(c.getCoach().getId());
-            coachDTO.setRegistrationNumber(c.getCoach().getRegistrationNumber());
-            coachDTO.setMark(c.getMark());
-            coachDTO.setModel(c.getModel());
-            coachesDTO.add(coachDTO);
+            CoachDTO confirmCoach = new CoachDTO();
+            confirmCoach.setId(c.getCoach().getId());
+            confirmCoach.setRegistrationNumber(c.getCoach().getRegistrationNumber());
+            confirmCoach.setMark(c.getMark());
+            confirmCoach.setModel(c.getModel());
+            coaches.add(confirmCoach);
         }
-        return coachesDTO;
+        return coaches;
     }
 }
