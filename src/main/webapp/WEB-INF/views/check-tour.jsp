@@ -22,6 +22,9 @@
         <form:input path="price" placeholder="price"/>
         <form:errors path="price"/>
         <br/>
+        <form:select path="customerId" items="${customers}" itemValue="id" itemLabel="firstName"/>
+        <form:errors path="customerId"/>
+        <br/>
         <input type="submit" value="Check coach"/>
         <input type="reset" value="Clear"/>
     </form:form>
