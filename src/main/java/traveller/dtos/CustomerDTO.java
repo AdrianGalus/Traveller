@@ -70,6 +70,13 @@ public class CustomerDTO {
     @Override
     public String toString() {
 
-        return firstName + " " + lastName + " phone: " + phone + " email: " + email;
+        return "CustomerDTO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", toursId=" + toursId +
+                '}';
     }
 }
