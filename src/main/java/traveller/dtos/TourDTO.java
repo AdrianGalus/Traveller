@@ -95,12 +95,19 @@ public class TourDTO {
 
         this.distance = distance;
     }
-
     @Override
     public String toString() {
-        return "coachId=" + coachId +
+
+        return "TourDTO{" +
+                "id=" + id +
+                ", coachId=" + coachId +
                 ", destination='" + destination + '\'' +
                 ", departureTime=" + departureTime +
-                ", arrivalTime=" + arrivalTime;
+                ", arrivalTime=" + arrivalTime +
+                ", customerId=" + customerId +
+                ", driversId=" + driversId +
+                ", price=" + price +
+                ", distance=" + distance +
+                '}';
     }
 }
