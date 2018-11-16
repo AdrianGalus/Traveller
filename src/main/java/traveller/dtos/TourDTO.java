@@ -95,4 +95,12 @@ public class TourDTO {
 
         this.distance = distance;
     }
+
+    @Override
+    public String toString() {
+        return "coachId=" + coachId +
+                ", destination='" + destination + '\'' +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime;
+    }
 }
