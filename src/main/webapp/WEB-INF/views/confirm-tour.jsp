@@ -19,7 +19,7 @@
     Select coach:
     <form:form action="/confirm-tour" method="post" modelAttribute="selectCoach">
         <input type="hidden" name="tourFormId" value="${tourFormId}"/>
-        <form:select path="coach" items="${availableCoaches}"/>
+        <form:select path="id" items="${availableCoaches}" itemLabel="registrationNumber" itemValue="id"/>
         <br/>
         <input type="submit" value="Confirm">
     </form:form>
