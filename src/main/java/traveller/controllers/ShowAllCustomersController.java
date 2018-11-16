@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import traveller.dtos.UserDTO;
-import traveller.services.ShowAllCustomersService;
+import traveller.services.CustomerService;
 
 @Controller
 @RequestMapping("/show-all-customers")
 public class ShowAllCustomersController {
 
     @Autowired
-    ShowAllCustomersService showAllCustomersService;
+    CustomerService showAllCustomersService;
 
     @GetMapping
     public String showAllCustomers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
