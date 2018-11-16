@@ -7,7 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CustomerDTO;
 import traveller.dtos.UserDTO;
-import traveller.services.AddCustomerService;
+import traveller.services.CustomerService;
 import javax.validation.Valid;
 
 @Controller
@@ -15,7 +15,7 @@ import javax.validation.Valid;
 public class AddCustomerController {
 
     @Autowired
-    AddCustomerService addCustomerService;
+    CustomerService customerService;
 
     @GetMapping
     public String addCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
@@ -35,7 +35,7 @@ public class AddCustomerController {
         if(result.hasErrors()) {
             return "add-customer";
         }
-        addCustomerService.addCustomer(form);
+        customerService.addCustomer(form);
         return "redirect:/home";
     }
 }
