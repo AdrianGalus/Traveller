@@ -2,6 +2,7 @@ package traveller.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CustomerDTO;
 import traveller.model.Customer;
 import traveller.model.CustomerDetails;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class CustomerService {
 
     @Autowired
@@ -30,7 +32,7 @@ public class CustomerService {
         customerDetails.setEmail(form.getPhone());
         customerDetailsRepository.save(customerDetails);
     }
-    public List<CustomerDTO> showAllCustomers() {
+    public List<CustomerDTO> findAllCustomers() {
         List<CustomerDetails> loadedCustomers = customerDetailsRepository.findAll();
         List<CustomerDTO> coachesDTO = new ArrayList<>();
         for(CustomerDetails c : loadedCustomers) {

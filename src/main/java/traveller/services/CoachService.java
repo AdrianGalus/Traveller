@@ -2,6 +2,7 @@ package traveller.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CoachDTO;
 import traveller.model.Coach;
 import traveller.model.CoachDetails;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class CoachService {
 
     @Autowired
@@ -18,7 +20,7 @@ public class CoachService {
     @Autowired
     CoachDetailsRepository coachDetailsRepository;
 
-    public List<CoachDTO> showAllCoaches() {
+    public List<CoachDTO> findAllCoaches() {
         List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
         List<CoachDTO> coachesDTO = new ArrayList<>();
         for(CoachDetails c : loadedCoaches) {

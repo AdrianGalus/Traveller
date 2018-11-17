@@ -12,22 +12,22 @@
         <h3>Hello ${loggedUser.login}!</h3>
         <a href="/logout">Logout</a>
         <br/>
-        <a href="/show-all-drivers">Show all drivers</a>
+        <a href="/find-driver/all">Show all drivers</a>
         <a href="/add-driver">Add driver</a>
         <a href="/edit-driver">Edit driver</a>
         <a href="/delete-driver">Delete driver</a>
         <br/>
-        <a href="/show-all-coaches">Show all coaches</a>
+        <a href="/find-coach/all">Show all coaches</a>
         <a href="/add-coach">Add coach</a>
         <a href="/edit-coach">Edit coach</a>
         <a href="/delete-coach">Delete coach</a>
         <br/>
-        <a href="/show-all-customers">Show all customers</a>
+        <a href="/find-customer/all">Show all customers</a>
         <a href="/add-customer">Add customer</a>
         <a href="/edit-customer">Edit customer</a>
         <a href="/delete-customer">Delete customer</a>
         <br/>
-        <a href="/show-all-tours">Show all tours</a>
+        <a href="/find-tour/all">Show all tours</a>
         <a href="/add-tour/check">Add tour</a>
         <a href="/edit-tour">Edit tour</a>
         <a href="/delete-tour">Delete tour</a>

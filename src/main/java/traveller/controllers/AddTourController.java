@@ -27,7 +27,7 @@ public class AddTourController {
     @ModelAttribute("customers")
     public List<CustomerDTO> customers() {
 
-        return customerService.showAllCustomers();
+        return customerService.findAllCustomers();
     }
     @GetMapping("/check")
     public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {

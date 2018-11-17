@@ -9,7 +9,6 @@ import traveller.model.CoachDetails;
 import traveller.model.Tour;
 import traveller.model.TourDetails;
 import traveller.repositories.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class TourService {
     @Autowired
     CoachDetailsRepository coachDetailsRepository;
 
-    public List<TourDTO> showAllTours() {
+    public List<TourDTO> findAllTours() {
         List<TourDetails> loadedTours = tourDetailsRepository.findAll();
         List<TourDTO> toursDTO = new ArrayList<>();
         for(TourDetails d : loadedTours) {

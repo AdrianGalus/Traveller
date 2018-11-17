@@ -10,20 +10,20 @@ import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
 
 @Controller
-@RequestMapping("/show-all-coaches")
-public class ShowAllCoachesController {
+@RequestMapping("/find-coach")
+public class FindCoachController {
 
     @Autowired
     CoachService coachService;
 
-    @GetMapping
-    public String showAllCoaches(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                Model model) {
+    @GetMapping("/all")
+    public String findAllCoaches(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+                                 Model model) {
 
         if(loggedUser == null) {
             return "redirect:/home";
         }
-        model.addAttribute("allCoaches", coachService.showAllCoaches());
+        model.addAttribute("allCoaches", coachService.findAllCoaches());
         return "all-coaches";
     }
 }

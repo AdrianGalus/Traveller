@@ -2,6 +2,7 @@ package traveller.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.DriverDTO;
 import traveller.model.Driver;
 import traveller.model.DriverDetails;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class DriverService {
 
     @Autowired
@@ -18,7 +20,7 @@ public class DriverService {
     @Autowired
     DriverRepository driverRepository;
 
-    public List<DriverDTO> showAllDrivers() {
+    public List<DriverDTO> findAllDrivers() {
         List<DriverDetails> loadedDrivers = driverDetailsRepository.findAll();
         List<DriverDTO> driversDTO = new ArrayList<>();
         for(DriverDetails d : loadedDrivers) {

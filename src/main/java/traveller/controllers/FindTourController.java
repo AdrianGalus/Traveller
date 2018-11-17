@@ -7,22 +7,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import traveller.dtos.UserDTO;
-import traveller.services.DriverService;
+import traveller.services.TourService;
 
 @Controller
-@RequestMapping("/show-all-drivers")
-public class ShowAllDriversController {
+@RequestMapping("/find-tour")
+public class FindTourController {
 
     @Autowired
-    DriverService driverService;
-    @GetMapping
-    public String showAllCoaches(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                 Model model) {
+    private TourService tourService;
+
+    @GetMapping("/all")
+    public String findAllTours(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+                               Model model) {
 
         if(loggedUser == null) {
             return "redirect:/home";
         }
-        model.addAttribute("allDrivers", driverService.showAllDrivers());
-        return "all-drivers";
+        model.addAttribute("allTours", tourService.findAllTours());
+        return "all-tours";
     }
 }

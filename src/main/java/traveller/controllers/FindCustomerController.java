@@ -10,20 +10,20 @@ import traveller.dtos.UserDTO;
 import traveller.services.CustomerService;
 
 @Controller
-@RequestMapping("/show-all-customers")
-public class ShowAllCustomersController {
+@RequestMapping("/find-customer")
+public class FindCustomerController {
 
     @Autowired
-    CustomerService showAllCustomersService;
+    CustomerService customerService;
 
-    @GetMapping
-    public String showAllCustomers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                 Model model) {
+    @GetMapping("/all")
+    public String findAllCustomers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+                                   Model model) {
 
         if(loggedUser == null) {
             return "redirect:/home";
         }
-        model.addAttribute("allCustomers", showAllCustomersService.showAllCustomers());
+        model.addAttribute("allCustomers", customerService.findAllCustomers());
         return "all-customers";
     }
 }
