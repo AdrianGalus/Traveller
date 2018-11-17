@@ -7,8 +7,8 @@ import traveller.model.DriverDetails;
 
 public interface DriverDetailsRepository extends JpaRepository<DriverDetails, Long> {
 
-    @Query("SELECT true FROM DriverDetails dc WHERE dc.phone = :phone")
+    @Query("SELECT true FROM DriverDetails dd WHERE dd.phone = :phone")
     Boolean isPhoneUsed(@Param("phone") String phone);
-    @Query("SELECT true FROM DriverDetails dc WHERE dc.email = :email")
+    @Query("SELECT true FROM DriverDetails dd WHERE dd.email = :email")
     Boolean isEmailUsed(@Param("email") String email);
 }

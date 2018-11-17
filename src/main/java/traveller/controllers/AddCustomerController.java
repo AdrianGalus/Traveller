@@ -35,6 +35,16 @@ public class AddCustomerController {
         if(result.hasErrors()) {
             return "add-customer";
         }
+        boolean existedPhone = customerService.checkPhone(form.getPhone());
+        if(existedPhone) {
+            result.rejectValue("phone", "errors.invalid", "Ten numer telefonu już jest w bazie!");
+            return "add-customer";
+        }
+        boolean existedEmail = customerService.checkEmail(form.getEmail());
+        if(existedEmail) {
+            result.rejectValue("email", "errors.invalid", "Ten adres email już jest w bazie!");
+            return "add-customer";
+        }
         customerService.addCustomer(form);
         return "redirect:/home";
     }

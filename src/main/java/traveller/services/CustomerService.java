@@ -20,6 +20,16 @@ public class CustomerService {
     @Autowired
     CustomerRepoistory customerRepoistory;
 
+    public boolean checkPhone(String phone) {
+
+        Boolean check = customerDetailsRepository.isPhoneUsed(phone);
+        return check != null ? check : false;
+    }
+    public boolean checkEmail(String email) {
+
+        Boolean check = customerDetailsRepository.isEmailUsed(email);
+        return check != null ? check : false;
+    }
     public void addCustomer(CustomerDTO form) {
 
         Customer customer = new Customer();
@@ -29,7 +39,7 @@ public class CustomerService {
         CustomerDetails customerDetails = new CustomerDetails();
         customerDetails.setCustomer(customer);
         customerDetails.setPhone(form.getPhone());
-        customerDetails.setEmail(form.getPhone());
+        customerDetails.setEmail(form.getEmail());
         customerDetailsRepository.save(customerDetails);
     }
     public List<CustomerDTO> findAllCustomers() {
