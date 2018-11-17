@@ -34,6 +34,16 @@ public class DriverService {
         }
         return driversDTO;
     }
+    public boolean checkPhone(String phone) {
+
+        Boolean check = driverDetailsRepository.isPhoneUsed(phone);
+        return check != null ? check : false;
+    }
+    public boolean checkEmail(String email) {
+
+        Boolean check = driverDetailsRepository.isEmailUsed(email);
+        return check != null ? check : false;
+    }
     public void addDriver(DriverDTO form) {
 
         Driver driver = new Driver();

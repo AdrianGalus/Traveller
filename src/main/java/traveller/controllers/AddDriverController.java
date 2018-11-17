@@ -36,6 +36,16 @@ public class AddDriverController {
         if(result.hasErrors()) {
             return "add-driver";
         }
+        boolean existedPhone = driverService.checkPhone(form.getPhone());
+        if(existedPhone) {
+            result.rejectValue("phone", "errors.invalid", "Ten numer telefonu już jest w bazie!");
+            return "add-driver";
+        }
+        boolean existedEmail = driverService.checkEmail(form.getEmail());
+        if(existedEmail) {
+            result.rejectValue("email", "errors.invalid", "Ten adres email jest już w bazie!");
+            return "add-driver";
+        }
         driverService.addDriver(form);
         return "redirect:/home";
     }

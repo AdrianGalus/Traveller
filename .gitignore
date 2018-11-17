@@ -30,7 +30,7 @@ cwallet.sso.lck### JetBrains template
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
-
+**iml
 #Maven:
 .classpath
 .project
