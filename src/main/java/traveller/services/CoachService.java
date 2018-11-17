@@ -7,15 +7,30 @@ import traveller.model.Coach;
 import traveller.model.CoachDetails;
 import traveller.repositories.CoachDetailsRepository;
 import traveller.repositories.CoachRepository;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
-public class AddCoachService {
+public class CoachService {
 
     @Autowired
     CoachRepository coachRepository;
     @Autowired
     CoachDetailsRepository coachDetailsRepository;
 
+    public List<CoachDTO> showAllCoaches() {
+        List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
+        List<CoachDTO> coachesDTO = new ArrayList<>();
+        for(CoachDetails c : loadedCoaches) {
+            CoachDTO coachDTO = new CoachDTO();
+            coachDTO.setId(c.getCoach().getId());
+            coachDTO.setRegistrationNumber(c.getCoach().getRegistrationNumber());
+            coachDTO.setModel(c.getModel());
+            coachDTO.setMark(c.getMark());
+            coachesDTO.add(coachDTO);
+        }
+        return coachesDTO;
+    }
     public boolean checkRegistrationNumber(String registrationNumber) {
 
         Boolean check = coachRepository.isRegistrationNumberUsed(registrationNumber);
