@@ -9,8 +9,7 @@ import traveller.dtos.CoachDTO;
 import traveller.dtos.CustomerDTO;
 import traveller.dtos.TourDTO;
 import traveller.dtos.UserDTO;
-import traveller.services.CheckTourService;
-import traveller.services.ConfirmTourService;
+import traveller.services.TourService;
 import traveller.services.CustomerService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -21,14 +20,13 @@ import java.util.List;
 public class AddTourController {
 
     @Autowired
-    CheckTourService checkTourService;
+    TourService tourService;
     @Autowired
     private CustomerService customerService;
-    @Autowired
-    ConfirmTourService confirmTourService;
 
     @ModelAttribute("customers")
     public List<CustomerDTO> customers() {
+
         return customerService.showAllCustomers();
     }
     @GetMapping("/check")
@@ -50,7 +48,7 @@ public class AddTourController {
         if(result.hasErrors()) {
             return "check-tour";
         }
-        List<CoachDTO> coaches = checkTourService.loadAvailableCoaches();
+        List<CoachDTO> coaches = tourService.loadAvailableCoaches();
         if(coaches == null ||coaches.size() < 1) {
             return "no-coach";
         }
@@ -80,7 +78,7 @@ public class AddTourController {
             return "confirm-tour";
         }
         firstStepForm.setCoachId(form.getId());
-        confirmTourService.confirmTour(firstStepForm);
+        tourService.confirmTour(firstStepForm);
         session.removeAttribute(tourFormId);
         return "redirect:/home";
     }
