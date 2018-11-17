@@ -3,6 +3,7 @@ package traveller.dtos;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class CustomerDTO {
     private String firstName;
     @NotNull @NotBlank @Size(min = 3)
     private String lastName;
-    @NotNull @NotBlank
+    @NotNull @NotBlank @Pattern(regexp = "[0-9]+")
     private String phone;
     @NotNull @NotBlank @Email
     private String email;
