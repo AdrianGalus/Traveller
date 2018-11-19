@@ -6,6 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CoachDTO;
 import traveller.model.Coach;
 import traveller.model.CoachDetails;
+import traveller.model.Driver;
+import traveller.model.Tour;
 import traveller.repositories.CoachDetailsRepository;
 import traveller.repositories.CoachRepository;
 import java.util.ArrayList;
@@ -19,6 +21,26 @@ public class CoachService {
     CoachRepository coachRepository;
     @Autowired
     CoachDetailsRepository coachDetailsRepository;
+
+    public CoachDTO findDetails(Long id) {
+
+        CoachDTO coachDTO = new CoachDTO();
+        Coach loadedCoach = coachRepository.findOne(id);
+        CoachDetails loadedCoachDetails = coachDetailsRepository.findByCoachId(id);
+        coachDTO.setId(loadedCoach.getId());
+        coachDTO.setRegistrationNumber(loadedCoach.getRegistrationNumber());
+        coachDTO.setModel(loadedCoachDetails.getModel());
+        coachDTO.setMark(loadedCoachDetails.getMark());
+        List<Long> driversId = new ArrayList<>();
+        for(Driver d : loadedCoach.getDrivers()) {
+            driversId.add(d.getId());
+        }
+        List<Long> toursId = new ArrayList<>();
+        for(Tour t : loadedCoach.getTours()) {
+            toursId.add(t.getId());
+        }
+        return coachDTO;
+    }
 
     public List<CoachDTO> findAllCoaches() {
         List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
