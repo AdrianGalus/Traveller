@@ -15,7 +15,6 @@
         <a href="/find-driver/all">Show all drivers</a>
         <a href="/add-driver">Add driver</a>
         <a href="/edit-driver">Edit driver</a>
-        <a href="/delete-driver">Delete driver</a>
         <br/>
         <a href="/find-coach/all">Show all coaches</a>
         <a href="/add-coach">Add coach</a>

@@ -8,8 +8,13 @@
     There are all our drivers
 `   <ol>
     <c:forEach items="${allDrivers}" var="driver">
-    <li>${driver}
-        </c:forEach>
+        <li>
+            ${driver}
+            <a href="/details-driver/${driver.id}">Show details</a>
+            <a href="">Delete</a>
+        </li>
+
+    </c:forEach>
 </ol>
 <br/>
 <a href="/home">Home</a>
