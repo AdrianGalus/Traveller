@@ -11,4 +11,6 @@ public interface DriverDetailsRepository extends JpaRepository<DriverDetails, Lo
     Boolean isPhoneUsed(@Param("phone") String phone);
     @Query("SELECT true FROM DriverDetails dd WHERE dd.email = :email")
     Boolean isEmailUsed(@Param("email") String email);
+    @Query("SELECT dd FROM DriverDetails dd WHERE dd.driver.id = :id")
+    DriverDetails findByDriverId(@Param("id") Long id);
 }
