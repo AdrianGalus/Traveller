@@ -5,9 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.TourDTO;
-import traveller.model.CoachDetails;
-import traveller.model.Tour;
-import traveller.model.TourDetails;
+import traveller.model.*;
 import traveller.repositories.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,32 @@ public class TourService {
     @Autowired
     CoachDetailsRepository coachDetailsRepository;
 
+    public TourDTO findDetails(Long id) {
+
+        TourDTO tourDTO = new TourDTO();
+        Tour loadedTour = tourRepository.findOne(id);
+        TourDetails loadedTourDetails = tourDetailsRepository.findByTourId(id);
+        tourDTO.setId(loadedTourDetails.getTour().getId());
+        tourDTO.setDestination(loadedTour.getDestination());
+        tourDTO.setDepartureTime(loadedTour.getDepartureDate());
+        tourDTO.setArrivalTime(loadedTour.getArrivalDate());
+        tourDTO.setDistance(loadedTourDetails.getDistance());
+        tourDTO.setPrice(loadedTourDetails.getPrice());
+        Customer customer = loadedTour.getCustomer();
+        if(customer != null) {
+            tourDTO.setCustomerId(customer.getId());
+        }
+        Coach coach = loadedTour.getCoach();
+        if(coach != null) {
+            tourDTO.setCoachId(coach.getId());
+        }
+        List<Long> driversId = new ArrayList<>();
+        for(Driver d : loadedTour.getDrivers()) {
+            driversId.add(d.getId());
+        }
+        tourDTO.setDriversId(driversId);
+        return tourDTO;
+    }
     public List<TourDTO> findAllTours() {
         List<TourDetails> loadedTours = tourDetailsRepository.findAll();
         List<TourDTO> toursDTO = new ArrayList<>();
