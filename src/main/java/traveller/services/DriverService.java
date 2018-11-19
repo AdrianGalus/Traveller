@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.DriverDTO;
+import traveller.model.Coach;
 import traveller.model.Driver;
 import traveller.model.DriverDetails;
+import traveller.model.Tour;
 import traveller.repositories.DriverDetailsRepository;
 import traveller.repositories.DriverRepository;
 import java.util.ArrayList;
@@ -19,6 +21,28 @@ public class DriverService {
     DriverDetailsRepository driverDetailsRepository;
     @Autowired
     DriverRepository driverRepository;
+
+    public DriverDTO findDetails(Long id) {
+
+        DriverDTO driverDTO = new DriverDTO();
+        Driver loadedDriver = driverRepository.findOne(id);
+        DriverDetails loadedDriverDetails = driverDetailsRepository.findByDriverId(id);
+        driverDTO.setId(loadedDriverDetails.getDriver().getId());
+        driverDTO.setFirstName(loadedDriver.getFirstName());
+        driverDTO.setLastName(loadedDriver.getLastName());
+        driverDTO.setPhone(loadedDriverDetails.getPhone());
+        driverDTO.setEmail(loadedDriverDetails.getEmail());
+        Coach coach = loadedDriver.getCoach();
+        if(coach != null) {
+            driverDTO.setCoachId(coach.getId());
+        }
+        List<Long> toursId = new ArrayList<>();
+        for(Tour t : loadedDriver.getTours()) {
+            toursId.add(t.getId());
+        }
+        driverDTO.setToursId(toursId);
+        return driverDTO;
+    }
 
     public List<DriverDTO> findAllDrivers() {
         List<DriverDetails> loadedDrivers = driverDetailsRepository.findAll();
