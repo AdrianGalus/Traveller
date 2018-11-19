@@ -12,7 +12,7 @@ import traveller.dtos.UserDTO;
 import traveller.services.DriverService;
 
 @Controller
-@RequestMapping("/details-driver/")
+@RequestMapping("/details-driver")
 public class DetailsDriverController {
 
     @Autowired

@@ -15,7 +15,7 @@
     <br/>
     Email: ${driverDTO.email}
     <br/>
-    Coach: <a href="">Show details</a>
+    Coach: <a href="/details-coach/${driverDTO.coachId}">Show details</a>
     <br/>
     Tours: <a href="">Show details</a>
     <br/>
