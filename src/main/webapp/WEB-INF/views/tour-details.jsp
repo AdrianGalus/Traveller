@@ -18,7 +18,7 @@
     <br/>
     Price: ${tourDTO.price}
     <br/>
-    Customer: <a href="">Show details</a>
+    Customer: <a href="/details-customer/${tourDTO.customerId}">Show details</a>
     <br/>
     Coach: <a href="/details-coach/${tourDTO.coachId}">Show details</a>
     <br/>
