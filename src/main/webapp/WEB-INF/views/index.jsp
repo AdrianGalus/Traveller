@@ -5,13 +5,8 @@
     <title>Home</title>
 </head>
 <body>
-    <c:if test="${empty loggedUser}">
-        <a href="/login">Login</a>
-    </c:if>
+    <%@include file="header.jsp" %>
     <c:if test="${not empty loggedUser}">
-        <h3>Hello ${loggedUser.login}!</h3>
-        <a href="/logout">Logout</a>
-        <br/>
         <a href="/find-driver/all">Show all drivers</a>
         <a href="/add-driver">Add driver</a>
         <br/>
