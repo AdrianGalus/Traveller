@@ -35,13 +35,14 @@ public class CoachService {
         for(Driver d : loadedCoach.getDrivers()) {
             driversId.add(d.getId());
         }
+        coachDTO.setDriversId(driversId);
         List<Long> toursId = new ArrayList<>();
         for(Tour t : loadedCoach.getTours()) {
             toursId.add(t.getId());
         }
+        coachDTO.setToursId(toursId);
         return coachDTO;
     }
-
     public List<CoachDTO> findAllCoaches() {
         List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
         List<CoachDTO> coachesDTO = new ArrayList<>();
