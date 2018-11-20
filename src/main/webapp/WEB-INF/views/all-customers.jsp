@@ -7,9 +7,12 @@
 <body>
     There are all our customers
 `   <ol>
-        <c:forEach items="${allCustomers}" var="customer">
+    <c:forEach items="${allCustomers}" var="customer">
         <li>${customer}
-            </c:forEach>
+            <a href="/details-customer/${customer.id}">Show details</a>
+            <a href="/delete-customer/${customer.id}">Delete</a>
+        </li>
+    </c:forEach>
     </ol>
     <br/>
     <a href="/home">Home</a>

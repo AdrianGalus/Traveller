@@ -8,8 +8,11 @@
     There are all our tours
 `   <ol>
     <c:forEach items="${allTours}" var="tour">
-    <li>${tour}
-        </c:forEach>
+        <li>${tour}
+            <a href="/details-tour/${tour.id}">Show details</a>
+            <a href="/delete-tour/${tour.id}">Delete</a>
+        </li>
+    </c:forEach>
     </ol>
     <br/>
     <a href="/home">Home</a>

@@ -11,9 +11,8 @@
         <li>
             ${driver}
             <a href="/details-driver/${driver.id}">Show details</a>
-            <a href="">Delete</a>
+            <a href="/delete-driver/${driver.id}">Delete</a>
         </li>
-
     </c:forEach>
 </ol>
 <br/>

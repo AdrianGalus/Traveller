@@ -7,9 +7,12 @@
 <body>
     This is the whole our fleet
     <ol>
-        <c:forEach items="${allCoaches}" var="coach">
-            <li>${coach}
-        </c:forEach>
+    <c:forEach items="${allCoaches}" var="coach">
+        <li>${coach}
+            <a href="/details-coach/${coach.id}">Show details</a>
+            <a href="/delete-coach/${coach.id}">Delete</a>
+        </li>
+    </c:forEach>
     </ol>
     <br/>
     <a href="/home">Home</a>
