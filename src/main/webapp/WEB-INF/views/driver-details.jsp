@@ -19,7 +19,6 @@
     <br/>
     Tours: <a href="">Show details</a>
     <br/>
-    <a href="/find-driver/all">Back</a>
     <a href="/home">Home</a>
 </body>
 </html>

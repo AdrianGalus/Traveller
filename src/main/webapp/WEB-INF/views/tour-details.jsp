@@ -23,7 +23,6 @@
     <br/>
     Drivers: ?
     <br/>
-    <a href="/find-tour/all">Back</a>
     <a href="/home">Home</a>
 </body>
 </html>
