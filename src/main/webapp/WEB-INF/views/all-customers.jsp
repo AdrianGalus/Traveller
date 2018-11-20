@@ -5,8 +5,9 @@
     <title>All Customers</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     There are all our customers
-`   <ol>
+    <ol>
     <c:forEach items="${allCustomers}" var="customer">
         <li>${customer}
             <a href="/details-customer/${customer.id}">Show details</a>
@@ -14,7 +15,5 @@
         </li>
     </c:forEach>
     </ol>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

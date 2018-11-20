@@ -5,6 +5,7 @@
     <title>Details</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Id: ${customerDTO.id}
     <br/>
     First name: ${customerDTO.firstName}
@@ -16,7 +17,5 @@
     Email: ${customerDTO.email}
     <br/>
     Tours: ?
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

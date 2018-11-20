@@ -5,6 +5,7 @@
     <title>All coaches</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     This is the whole our fleet
     <ol>
     <c:forEach items="${allCoaches}" var="coach">
@@ -14,7 +15,5 @@
         </li>
     </c:forEach>
     </ol>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

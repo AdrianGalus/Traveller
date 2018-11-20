@@ -5,6 +5,7 @@
     <title>New tour</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Add new tour
     <form:form method="post" modelAttribute="tourForm">
         <form:input path="destination" placeholder="destinantion"/>
@@ -28,7 +29,5 @@
         <input type="submit" value="Check coach"/>
         <input type="reset" value="Clear"/>
     </form:form>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

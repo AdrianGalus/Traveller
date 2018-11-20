@@ -5,6 +5,7 @@
     <title>New driver</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Add new driver to our staff!
     <br/>
     <form:form method="post" modelAttribute="driverForm">
@@ -23,7 +24,5 @@
         <input type="submit" value="Add"/>
         <input type="reset" value="Clear"/>
     </form:form>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

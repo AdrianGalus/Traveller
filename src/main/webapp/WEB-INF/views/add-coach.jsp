@@ -5,6 +5,7 @@
     <title>New coach</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Add new coach to our fleet!
     <br/>
     <form:form method="post" modelAttribute="coachForm">
@@ -20,7 +21,5 @@
         <input type="submit" value="Add"/>
         <input type="reset" value="Clear"/>
     </form:form>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

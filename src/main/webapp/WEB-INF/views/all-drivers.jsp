@@ -5,8 +5,9 @@
     <title>All drivers</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     There are all our drivers
-`   <ol>
+    <ol>
     <c:forEach items="${allDrivers}" var="driver">
         <li>
             ${driver}
@@ -14,8 +15,6 @@
             <a href="/delete-driver/${driver.id}">Delete</a>
         </li>
     </c:forEach>
-</ol>
-<br/>
-<a href="/home">Home</a>
+    </ol>
 </body>
 </html>

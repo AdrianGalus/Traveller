@@ -5,6 +5,7 @@
     <title>Edit coach</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Select coach to edit
 
 </body>

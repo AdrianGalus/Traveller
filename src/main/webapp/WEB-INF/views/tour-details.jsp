@@ -5,6 +5,7 @@
     <title>Details</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Id: ${tourDTO.id}
     <br/>
     Destination: ${tourDTO.destination}
@@ -22,7 +23,5 @@
     Coach: <a href="/details-coach/${tourDTO.coachId}">Show details</a>
     <br/>
     Drivers: ?
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

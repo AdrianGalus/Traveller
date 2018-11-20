@@ -5,6 +5,7 @@
     <title>Confirm tour</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Confirm tour:
     Destination: ${tourForm.destination}
     <br/>
@@ -25,7 +26,5 @@
     </form:form>
     <br/>
     <a href="/add-tour/check">Check another term</a>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

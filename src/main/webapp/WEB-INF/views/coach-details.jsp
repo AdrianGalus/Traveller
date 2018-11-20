@@ -5,6 +5,7 @@
     <title>Details</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Id: ${coachDTO.id}
     <br/>
     Registration number: ${coachDTO.registrationNumber}
@@ -16,7 +17,5 @@
     Drivers: ?
     <br/>
     Tours: ?
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

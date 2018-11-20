@@ -5,8 +5,9 @@
     <title>All tours</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     There are all our tours
-`   <ol>
+    <ol>
     <c:forEach items="${allTours}" var="tour">
         <li>${tour}
             <a href="/details-tour/${tour.id}">Show details</a>
@@ -14,7 +15,5 @@
         </li>
     </c:forEach>
     </ol>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>

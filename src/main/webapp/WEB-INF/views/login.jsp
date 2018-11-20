@@ -5,6 +5,7 @@
     <title>login</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     <form:form method="post" modelAttribute="userForm">
         <form:input path="login" placeholder="login"/>
         <form:errors path="login"/>

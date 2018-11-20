@@ -5,6 +5,7 @@
     <title>New customer</title>
 </head>
 <body>
+    <%@include file="header.jsp" %>
     Add new customer to our contacts!
     <form:form method="post" modelAttribute="customerForm">
         <form:input path="firstName" placeholder="firstName"/>
@@ -22,7 +23,5 @@
         <input type="submit" value="Add"/>
         <input type="reset" value="Clear"/>
     </form:form>
-    <br/>
-    <a href="/home">Home</a>
 </body>
 </html>
