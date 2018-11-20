@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CustomerDTO;
 import traveller.model.Customer;
 import traveller.model.CustomerDetails;
+import traveller.model.Tour;
 import traveller.repositories.CustomerDetailsRepository;
 import traveller.repositories.CustomerRepoistory;
 import java.util.ArrayList;
@@ -20,6 +21,23 @@ public class CustomerService {
     @Autowired
     CustomerRepoistory customerRepoistory;
 
+    public CustomerDTO findDetails(Long id) {
+
+        CustomerDTO customerDTO = new CustomerDTO();
+        Customer loadedCustomer = customerRepoistory.findOne(id);
+        CustomerDetails loadedCustomerDetails = customerDetailsRepository.findByCustomerId(id);
+        customerDTO.setId(loadedCustomerDetails.getCustomer().getId());
+        customerDTO.setFirstName(loadedCustomer.getFistName());
+        customerDTO.setLastName(loadedCustomer.getLastName());
+        customerDTO.setPhone(loadedCustomerDetails.getPhone());
+        customerDTO.setEmail(loadedCustomerDetails.getEmail());
+        List<Long> toursId = new ArrayList<>();
+        for(Tour t : loadedCustomer.getTours()) {
+            toursId.add(t.getId());
+        }
+        customerDTO.setToursId(toursId);
+        return customerDTO;
+    }
     public boolean checkPhone(String phone) {
 
         Boolean check = customerDetailsRepository.isPhoneUsed(phone);
