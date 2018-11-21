@@ -18,6 +18,6 @@
     <br/>
     NIP: ${customerDTO.nip}
     <br/>
-    Tours: ?
+    Tours: <a href="/find-tour/customerDTO/${customerDTO.id}">Show more</a>
 </body>
 </html>

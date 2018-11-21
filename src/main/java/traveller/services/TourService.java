@@ -54,20 +54,14 @@ public class TourService {
         return tourDTO;
     }
     public List<TourDTO> findAllTours() {
+
         List<TourDetails> loadedTours = tourDetailsRepository.findAll();
-        List<TourDTO> toursDTO = new ArrayList<>();
-        for(TourDetails d : loadedTours) {
-            TourDTO tourDTO = new TourDTO();
-            tourDTO.setId(d.getTour().getId());
-            tourDTO.setDestination(d.getTour().getDestination());
-            tourDTO.setDepartureTime(d.getTour().getDepartureDate());
-            tourDTO.setArrivalTime(d.getTour().getArrivalDate());
-            tourDTO.setCoachId(d.getTour().getCoach().getId());
-            tourDTO.setDistance(d.getDistance());
-            tourDTO.setPrice(d.getPrice());
-            toursDTO.add(tourDTO);
-        }
-        return toursDTO;
+        return createTourDtoList(loadedTours);
+    }
+    public List<TourDTO> findAllToursByCoachId(Long id) {
+
+        List<TourDetails> loadedToursDetails = tourDetailsRepository.findAllByCoachId(id);
+        return createTourDtoList(loadedToursDetails);
     }
     public List<CoachDTO> loadAvailableCoaches() {
 
@@ -97,5 +91,27 @@ public class TourService {
         newTourDetails.setPrice(confirmedTour.getPrice());
         newTourDetails.setTour(newTour);
         tourDetailsRepository.save(newTourDetails);
+    }
+    private List<TourDTO> createTourDtoList(List<TourDetails> loadedToursDetails) {
+
+        List<TourDTO> toursDTO = new ArrayList<>();
+        for(TourDetails td : loadedToursDetails) {
+            TourDTO tourDTO = new TourDTO();
+            tourDTO.setId(td.getTour().getId());
+            tourDTO.setDestination(td.getTour().getDestination());
+            tourDTO.setDepartureTime(td.getTour().getDepartureDate());
+            tourDTO.setArrivalTime(td.getTour().getArrivalDate());
+            tourDTO.setDistance(td.getDistance());
+            tourDTO.setPrice(td.getPrice());
+            tourDTO.setCoachId(td.getTour().getCoach().getId());
+            tourDTO.setCustomerId(td.getTour().getCustomer().getId());
+            List<Long> driversId = new ArrayList<>();
+            for(Driver d : td.getTour().getDrivers()) {
+                driversId.add(d.getId());
+            }
+            tourDTO.setDriversId(driversId);
+            toursDTO.add(tourDTO);
+        }
+        return toursDTO;
     }
 }

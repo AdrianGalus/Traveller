@@ -6,7 +6,6 @@
 </head>
 <body>
     <%@include file="header.jsp" %>
-    There are all our tours
     <ol>
     <c:forEach items="${allTours}" var="tour">
         <li>${tour.description}
