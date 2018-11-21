@@ -61,6 +61,11 @@ public class TourService {
         List<TourDetails> loadedToursDetails = tourDetailsRepository.findAllByCoachId(id);
         return createTourDtoList(loadedToursDetails);
     }
+    public List<TourDTO> findAllToursByCustomerId(Long id) {
+
+        List<TourDetails> loadedToursDetails = tourDetailsRepository.findAllByCustomerId(id);
+        return createTourDtoList(loadedToursDetails);
+    }
     public List<CoachDTO> findAvailableCoaches() {
 
         return coachService.findAvailableCoaches();

@@ -36,14 +36,14 @@ public class FindTourController {
         switch(dto) {
             case "coachDTO":
                 model.addAttribute("allTours", tourService.findAllToursByCoachId(id));
-                return "all-tours";
+                break;
             case "driverDTO":
 
                 break;
             case "customerDTO":
-
+                model.addAttribute("allTours", tourService.findAllToursByCustomerId(id));
                 break;
         }
-        return "index";
+        return "all-tours";
     }
 }
