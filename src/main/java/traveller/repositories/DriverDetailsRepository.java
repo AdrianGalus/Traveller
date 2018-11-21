@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import traveller.model.DriverDetails;
 
+import java.util.List;
+
 public interface DriverDetailsRepository extends JpaRepository<DriverDetails, Long> {
 
     @Query("SELECT true FROM DriverDetails dd WHERE dd.phone = :phone")
@@ -13,4 +15,6 @@ public interface DriverDetailsRepository extends JpaRepository<DriverDetails, Lo
     Boolean isEmailUsed(@Param("email") String email);
     @Query("SELECT dd FROM DriverDetails dd WHERE dd.driver.id = :id")
     DriverDetails findByDriverId(@Param("id") Long id);
+    @Query("SELECT dd FROM DriverDetails dd WHERE dd.driver.coach.id = :id")
+    List<DriverDetails> findAllByCoachId(@Param("id") Long id);
 }
