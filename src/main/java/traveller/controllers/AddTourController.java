@@ -13,6 +13,7 @@ import traveller.services.TourService;
 import traveller.services.CustomerService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -51,6 +52,10 @@ public class AddTourController {
         List<CoachDTO> coaches = tourService.loadAvailableCoaches();
         if(coaches == null ||coaches.size() < 1) {
             return "no-coach";
+        }
+        if(form.getDepartureTime().isAfter(form.getArrivalTime())) {
+            result.rejectValue("arrivalTime", "errors.invalid", "Data powrotu nie może być wcześniejsza niż data wyjazdu!");
+            return "check-tour";
         }
         else {
             model.addAttribute("selectCoach", new CoachDTO());
