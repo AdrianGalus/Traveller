@@ -14,7 +14,7 @@
     <br/>
     Model: ${coachDTO.model}
     <br/>
-    Drivers: ?
+    Drivers: <a href="/find-driver/coachDTO/${coachDTO.id}">Show more</a>
     <br/>
     Tours: <a href="/find-tour/coachDTO/${coachDTO.id}">Show more</a>
 </body>
