@@ -53,6 +53,11 @@ public class DriverService {
         List<DriverDetails> loadedDrivers = driverDetailsRepository.findAllByCoachId(id);
         return createDriverDtoList(loadedDrivers);
     }
+    public List<DriverDTO> findAllDriversByTourId(Long id) {
+
+        List<DriverDetails> loadedDrivers = driverDetailsRepository.findAllByTourId(id);
+        return createDriverDtoList(loadedDrivers);
+    }
     public boolean checkPhone(String phone) {
 
         Boolean check = driverDetailsRepository.isPhoneUsed(phone);
