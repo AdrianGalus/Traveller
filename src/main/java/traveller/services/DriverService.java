@@ -43,20 +43,10 @@ public class DriverService {
         driverDTO.setToursId(toursId);
         return driverDTO;
     }
-
     public List<DriverDTO> findAllDrivers() {
+
         List<DriverDetails> loadedDrivers = driverDetailsRepository.findAll();
-        List<DriverDTO> driversDTO = new ArrayList<>();
-        for(DriverDetails d : loadedDrivers) {
-            DriverDTO driverDTO = new DriverDTO();
-            driverDTO.setId(d.getDriver().getId());
-            driverDTO.setFirstName(d.getDriver().getFirstName());
-            driverDTO.setLastName(d.getDriver().getLastName());
-            driverDTO.setPhone(d.getPhone());
-            driverDTO.setEmail(d.getEmail());
-            driversDTO.add(driverDTO);
-        }
-        return driversDTO;
+        return createDriverDtoList(loadedDrivers);
     }
     public boolean checkPhone(String phone) {
 
@@ -79,5 +69,19 @@ public class DriverService {
         driverDetails.setPhone(form.getPhone());
         driverDetails.setEmail(form.getEmail());
         driverDetailsRepository.save(driverDetails);
+    }
+    private List<DriverDTO> createDriverDtoList(List<DriverDetails> loadedDriverDetails) {
+
+        List<DriverDTO> driversDTO = new ArrayList<>();
+        for(DriverDetails d : loadedDriverDetails) {
+            DriverDTO driverDTO = new DriverDTO();
+            driverDTO.setId(d.getDriver().getId());
+            driverDTO.setFirstName(d.getDriver().getFirstName());
+            driverDTO.setLastName(d.getDriver().getLastName());
+            driverDTO.setPhone(d.getPhone());
+            driverDTO.setEmail(d.getEmail());
+            driversDTO.add(driverDTO);
+        }
+        return driversDTO;
     }
 }
