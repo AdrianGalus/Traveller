@@ -13,7 +13,6 @@ import traveller.services.TourService;
 import traveller.services.CustomerService;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -49,7 +48,7 @@ public class AddTourController {
         if(result.hasErrors()) {
             return "check-tour";
         }
-        List<CoachDTO> coaches = tourService.loadAvailableCoaches();
+        List<CoachDTO> coaches = tourService.findAvailableCoaches();
         if(coaches == null ||coaches.size() < 1) {
             return "no-coach";
         }
