@@ -21,11 +21,9 @@ public class TourService {
     @Autowired
     CoachRepository coachRepository;
     @Autowired
-    CustomerRepoistory customerRepoistory;
+    CustomerRepository customerRepository;
     @Autowired
-    DriverRepository driverRepository;
-    @Autowired
-    CoachDetailsRepository coachDetailsRepository;
+    CoachService coachService;
 
     public TourDTO findDetails(Long id) {
 
@@ -63,19 +61,9 @@ public class TourService {
         List<TourDetails> loadedToursDetails = tourDetailsRepository.findAllByCoachId(id);
         return createTourDtoList(loadedToursDetails);
     }
-    public List<CoachDTO> loadAvailableCoaches() {
+    public List<CoachDTO> findAvailableCoaches() {
 
-        List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
-        List<CoachDTO> coaches = new ArrayList<>();
-        for(CoachDetails c : loadedCoaches) {
-            CoachDTO confirmCoach = new CoachDTO();
-            confirmCoach.setId(c.getCoach().getId());
-            confirmCoach.setRegistrationNumber(c.getCoach().getRegistrationNumber());
-            confirmCoach.setMark(c.getMark());
-            confirmCoach.setModel(c.getModel());
-            coaches.add(confirmCoach);
-        }
-        return coaches;
+        return coachService.findAvailableCoaches();
     }
     public void confirmTour(TourDTO confirmedTour) {
 
@@ -84,7 +72,7 @@ public class TourService {
         newTour.setDepartureDate(confirmedTour.getDepartureTime());
         newTour.setArrivalDate(confirmedTour.getArrivalTime());
         newTour.setCoach(coachRepository.findOne(confirmedTour.getCoachId()));
-        newTour.setCustomer(customerRepoistory.findOne(confirmedTour.getCustomerId()));
+        newTour.setCustomer(customerRepository.findOne(confirmedTour.getCustomerId()));
         tourRepository.save(newTour);
         TourDetails newTourDetails = new TourDetails();
         newTourDetails.setDistance(confirmedTour.getDistance());
