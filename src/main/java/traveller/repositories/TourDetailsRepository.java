@@ -12,4 +12,6 @@ public interface TourDetailsRepository extends JpaRepository<TourDetails, Long> 
     TourDetails findByTourId(@Param("id") Long id);
     @Query("SELECT td FROM TourDetails td WHERE td.tour.coach.id = :id")
     List<TourDetails> findAllByCoachId(@Param("id") Long id);
+    @Query("SELECT td FROM TourDetails td WHERE td.tour.customer.id = :id")
+    List<TourDetails> findAllByCustomerId(@Param("id") Long id);
 }
