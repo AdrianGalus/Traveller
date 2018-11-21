@@ -89,4 +89,8 @@ public class DriverDTO {
                 ", email='" + email + '\'' +
                 '}';
     }
+    public String getDescription() {
+
+        return firstName + " " + lastName + ", phone: " + phone;
+    }
 }

@@ -10,7 +10,7 @@
     <ol>
     <c:forEach items="${allDrivers}" var="driver">
         <li>
-            ${driver}
+            ${driver.description}
             <a href="/details-driver/${driver.id}">Show details</a>
             <a href="/delete-driver/${driver.id}">Delete</a>
         </li>
