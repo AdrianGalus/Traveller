@@ -44,17 +44,14 @@ public class CoachService {
         return coachDTO;
     }
     public List<CoachDTO> findAllCoaches() {
+
         List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
-        List<CoachDTO> coachesDTO = new ArrayList<>();
-        for(CoachDetails c : loadedCoaches) {
-            CoachDTO coachDTO = new CoachDTO();
-            coachDTO.setId(c.getCoach().getId());
-            coachDTO.setRegistrationNumber(c.getCoach().getRegistrationNumber());
-            coachDTO.setModel(c.getModel());
-            coachDTO.setMark(c.getMark());
-            coachesDTO.add(coachDTO);
-        }
-        return coachesDTO;
+        return createCoachDtoList(loadedCoaches);
+    }
+    public List<CoachDTO> findAvailableCoaches() {
+
+        List<CoachDetails> loadedCoaches = coachDetailsRepository.findAll();
+        return createCoachDtoList(loadedCoaches);
     }
     public boolean checkRegistrationNumber(String registrationNumber) {
 
@@ -71,5 +68,18 @@ public class CoachService {
         coachDetails.setMark(form.getMark());
         coachDetails.setModel(form.getModel());
         coachDetailsRepository.save(coachDetails);
+    }
+    private List<CoachDTO> createCoachDtoList(List<CoachDetails> loadedCoachesDetails) {
+
+        List<CoachDTO> coachesDTO = new ArrayList<>();
+        for(CoachDetails c : loadedCoachesDetails) {
+            CoachDTO coachDTO = new CoachDTO();
+            coachDTO.setId(c.getCoach().getId());
+            coachDTO.setRegistrationNumber(c.getCoach().getRegistrationNumber());
+            coachDTO.setModel(c.getModel());
+            coachDTO.setMark(c.getMark());
+            coachesDTO.add(coachDTO);
+        }
+        return coachesDTO;
     }
 }
