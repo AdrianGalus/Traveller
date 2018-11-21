@@ -8,7 +8,7 @@ import traveller.model.Customer;
 import traveller.model.CustomerDetails;
 import traveller.model.Tour;
 import traveller.repositories.CustomerDetailsRepository;
-import traveller.repositories.CustomerRepoistory;
+import traveller.repositories.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,12 +19,12 @@ public class CustomerService {
     @Autowired
     CustomerDetailsRepository customerDetailsRepository;
     @Autowired
-    CustomerRepoistory customerRepoistory;
+    CustomerRepository customerRepository;
 
     public CustomerDTO findDetails(Long id) {
 
         CustomerDTO customerDTO = new CustomerDTO();
-        Customer loadedCustomer = customerRepoistory.findOne(id);
+        Customer loadedCustomer = customerRepository.findOne(id);
         CustomerDetails loadedCustomerDetails = customerDetailsRepository.findByCustomerId(id);
         customerDTO.setId(loadedCustomerDetails.getCustomer().getId());
         customerDTO.setFirstName(loadedCustomer.getFistName());
@@ -51,7 +51,7 @@ public class CustomerService {
     }
     public boolean checkNip(String nip) {
 
-        Boolean check = customerRepoistory.isNipUsed(nip);
+        Boolean check = customerRepository.isNipUsed(nip);
         return check != null ? check : false;
     }
     public void addCustomer(CustomerDTO form) {
@@ -60,7 +60,7 @@ public class CustomerService {
         customer.setFistName(form.getFirstName());
         customer.setLastName(form.getLastName());
         customer.setNip(form.getNip());
-        customerRepoistory.save(customer);
+        customerRepository.save(customer);
         CustomerDetails customerDetails = new CustomerDetails();
         customerDetails.setCustomer(customer);
         customerDetails.setPhone(form.getPhone());
@@ -68,7 +68,12 @@ public class CustomerService {
         customerDetailsRepository.save(customerDetails);
     }
     public List<CustomerDTO> findAllCustomers() {
+
         List<CustomerDetails> loadedCustomers = customerDetailsRepository.findAll();
+        return createCustomerDtoList(loadedCustomers);
+    }
+    private List<CustomerDTO> createCustomerDtoList(List<CustomerDetails> loadedCustomers) {
+
         List<CustomerDTO> coachesDTO = new ArrayList<>();
         for(CustomerDetails c : loadedCustomers) {
             CustomerDTO customerDTO = new CustomerDTO();
