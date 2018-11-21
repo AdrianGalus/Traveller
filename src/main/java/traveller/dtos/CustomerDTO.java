@@ -2,6 +2,8 @@ package traveller.dtos;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.pl.NIP;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -18,6 +20,8 @@ public class CustomerDTO {
     private String phone;
     @NotNull @NotBlank @Email
     private String email;
+    @NotNull @NotBlank @NIP
+    private String nip;
     private List<Long> toursId;
 
     public Long getId() {
@@ -60,6 +64,14 @@ public class CustomerDTO {
 
         this.email = email;
     }
+    public String getNip() {
+
+        return nip;
+    }
+    public void setNip(String nip) {
+
+        this.nip = nip;
+    }
     public List<Long> getToursId() {
 
         return toursId;
@@ -77,7 +89,12 @@ public class CustomerDTO {
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", nip='" + nip + '\'' +
                 ", toursId=" + toursId +
                 '}';
+    }
+    public String getDescription() {
+
+        return firstName + " " + lastName + ", nip: " + nip;
     }
 }

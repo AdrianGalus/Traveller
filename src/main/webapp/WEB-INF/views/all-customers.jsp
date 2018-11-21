@@ -9,7 +9,7 @@
     There are all our customers
     <ol>
     <c:forEach items="${allCustomers}" var="customer">
-        <li>${customer}
+        <li>${customer.description}
             <a href="/details-customer/${customer.id}">Show details</a>
             <a href="/delete-customer/${customer.id}">Delete</a>
         </li>

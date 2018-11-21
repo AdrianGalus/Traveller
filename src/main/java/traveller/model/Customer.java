@@ -15,6 +15,8 @@ public class Customer {
     private String fistName;
     @Column(nullable = false)
     private String lastName;
+    @Column(nullable = false, unique = true)
+    private String nip;
     @OneToMany(mappedBy = "customer")
     private List<Tour> tours = new ArrayList<>();
 
@@ -41,6 +43,14 @@ public class Customer {
     public void setLastName(String lastName) {
 
         this.lastName = lastName;
+    }
+    public String getNip() {
+
+        return nip;
+    }
+    public void setNip(String nip) {
+
+        this.nip = nip;
     }
     public List<Tour> getTours() {
 

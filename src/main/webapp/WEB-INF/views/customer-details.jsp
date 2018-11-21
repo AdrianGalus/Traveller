@@ -16,6 +16,8 @@
     <br/>
     Email: ${customerDTO.email}
     <br/>
+    NIP: ${customerDTO.nip}
+    <br/>
     Tours: ?
 </body>
 </html>
