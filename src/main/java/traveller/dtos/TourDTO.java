@@ -3,12 +3,15 @@ package traveller.dtos;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TourDTO {
 
     private static final String DATE_FORMAT = "uuuu-MM-dd HH:mm";
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern(DATE_FORMAT);
 
     private Long id;
     private Long coachId;
@@ -18,9 +21,12 @@ public class TourDTO {
     private LocalDateTime departureTime;
     @NotNull @DateTimeFormat(pattern = DATE_FORMAT)
     private LocalDateTime arrivalTime;
+    @NotNull
     private Long customerId;
     private List<Long> driversId;
+    @NotNull
     private Double price;
+    @NotNull
     private Double distance;
 
     public Long getId() {
@@ -109,5 +115,9 @@ public class TourDTO {
                 ", price=" + price +
                 ", distance=" + distance +
                 '}';
+    }
+    public String getDescription() {
+
+        return destination + " - " + departureTime.format(FORMAT) + " - " + arrivalTime.format(FORMAT);
     }
 }
