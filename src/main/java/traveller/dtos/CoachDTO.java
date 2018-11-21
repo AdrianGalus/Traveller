@@ -77,4 +77,8 @@ public class CoachDTO {
                 ", toursId=" + toursId +
                 '}';
     }
+    public String getDescription() {
+
+        return registrationNumber + " " + mark + " " + model;
+    }
 }

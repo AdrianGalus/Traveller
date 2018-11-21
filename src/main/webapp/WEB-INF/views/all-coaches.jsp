@@ -9,7 +9,7 @@
     This is the whole our fleet
     <ol>
     <c:forEach items="${allCoaches}" var="coach">
-        <li>${coach}
+        <li>${coach.description}
             <a href="/details-coach/${coach.id}">Show details</a>
             <a href="/delete-coach/${coach.id}">Delete</a>
         </li>
