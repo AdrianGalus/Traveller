@@ -27,11 +27,12 @@ public class CustomerService {
         Customer loadedCustomer = customerRepository.findOne(id);
         CustomerDetails loadedCustomerDetails = customerDetailsRepository.findByCustomerId(id);
         customerDTO.setId(loadedCustomerDetails.getCustomer().getId());
-        customerDTO.setFirstName(loadedCustomer.getFistName());
+        customerDTO.setName(loadedCustomer.getName());
+        customerDTO.setFirstName(loadedCustomer.getFirstName());
         customerDTO.setLastName(loadedCustomer.getLastName());
         customerDTO.setPhone(loadedCustomerDetails.getPhone());
         customerDTO.setEmail(loadedCustomerDetails.getEmail());
-        customerDTO.setNip(loadedCustomer.getNip());
+        customerDTO.setNip(loadedCustomerDetails.getNip());
         List<Long> toursId = new ArrayList<>();
         for(Tour t : loadedCustomer.getTours()) {
             toursId.add(t.getId());
@@ -57,14 +58,15 @@ public class CustomerService {
     public void addCustomer(CustomerDTO form) {
 
         Customer customer = new Customer();
-        customer.setFistName(form.getFirstName());
+        customer.setName(form.getName());
+        customer.setFirstName(form.getFirstName());
         customer.setLastName(form.getLastName());
-        customer.setNip(form.getNip());
         customerRepository.save(customer);
         CustomerDetails customerDetails = new CustomerDetails();
         customerDetails.setCustomer(customer);
         customerDetails.setPhone(form.getPhone());
         customerDetails.setEmail(form.getEmail());
+        customerDetails.setNip(form.getNip());
         customerDetailsRepository.save(customerDetails);
     }
     public List<CustomerDTO> findAllCustomers() {
@@ -78,11 +80,12 @@ public class CustomerService {
         for(CustomerDetails c : loadedCustomers) {
             CustomerDTO customerDTO = new CustomerDTO();
             customerDTO.setId(c.getCustomer().getId());
-            customerDTO.setFirstName(c.getCustomer().getFistName());
+            customerDTO.setName(c.getCustomer().getName());
+            customerDTO.setFirstName(c.getCustomer().getFirstName());
             customerDTO.setLastName(c.getCustomer().getLastName());
             customerDTO.setPhone(c.getPhone());
             customerDTO.setEmail(c.getEmail());
-            customerDTO.setNip(c.getCustomer().getNip());
+            customerDTO.setNip(c.getNip());
             coachesDTO.add(customerDTO);
         }
         return coachesDTO;

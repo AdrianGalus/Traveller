@@ -8,6 +8,9 @@
     <%@include file="header.jsp" %>
     Add new customer to our contacts!
     <form:form method="post" modelAttribute="customerForm">
+        <form:input path="name" placeholder="name"/>
+        <form:errors path="name"/>
+        <br/>
         <form:input path="firstName" placeholder="firstName"/>
         <form:errors path="firstName"/>
         <br/>
