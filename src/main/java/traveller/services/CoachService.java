@@ -21,6 +21,8 @@ public class CoachService {
     CoachRepository coachRepository;
     @Autowired
     CoachDetailsRepository coachDetailsRepository;
+    @Autowired
+    DriverService driverService;
 
     public CoachDTO findDetails(Long id) {
 
@@ -58,12 +60,28 @@ public class CoachService {
         Boolean check = coachRepository.isRegistrationNumberUsed(registrationNumber);
         return check != null ? check : false;
     }
+    public String findRegistrationNumberByCoachId(Long id) {
+
+        return coachRepository.findRegistrationNumberByCoachId(id);
+    }
     public void addCoach(CoachDTO form) {
 
         Coach coach = new Coach();
         coach.setRegistrationNumber(form.getRegistrationNumber());
         coachRepository.save(coach);
         CoachDetails coachDetails = new CoachDetails();
+        coachDetails.setCoach(coach);
+        coachDetails.setMark(form.getMark());
+        coachDetails.setModel(form.getModel());
+        coachDetailsRepository.save(coachDetails);
+    }
+    public void editCoach(CoachDTO form) {
+
+        Coach coach = coachRepository.findOne(form.getId());
+        coach.setRegistrationNumber(form.getRegistrationNumber());
+        driverService.setCoachInDrivers(coach, form.getDriversId());
+        coachRepository.save(coach);
+        CoachDetails coachDetails = coachDetailsRepository.findByCoachId(form.getId());
         coachDetails.setCoach(coach);
         coachDetails.setMark(form.getMark());
         coachDetails.setModel(form.getModel());
