@@ -32,7 +32,6 @@ public class CustomerService {
         customerDTO.setLastName(loadedCustomer.getLastName());
         customerDTO.setPhone(loadedCustomerDetails.getPhone());
         customerDTO.setEmail(loadedCustomerDetails.getEmail());
-        customerDTO.setNip(loadedCustomerDetails.getNip());
         List<Long> toursId = new ArrayList<>();
         for(Tour t : loadedCustomer.getTours()) {
             toursId.add(t.getId());
@@ -50,11 +49,6 @@ public class CustomerService {
         Boolean check = customerDetailsRepository.isEmailUsed(email);
         return check != null ? check : false;
     }
-    public boolean checkNip(String nip) {
-
-        Boolean check = customerDetailsRepository.isNipUsed(nip);
-        return check != null ? check : false;
-    }
     public void addCustomer(CustomerDTO form) {
 
         Customer customer = new Customer();
@@ -66,7 +60,6 @@ public class CustomerService {
         customerDetails.setCustomer(customer);
         customerDetails.setPhone(form.getPhone());
         customerDetails.setEmail(form.getEmail());
-        customerDetails.setNip(form.getNip());
         customerDetailsRepository.save(customerDetails);
     }
     public List<CustomerDTO> findAllCustomers() {
@@ -85,7 +78,6 @@ public class CustomerService {
             customerDTO.setLastName(c.getCustomer().getLastName());
             customerDTO.setPhone(c.getPhone());
             customerDTO.setEmail(c.getEmail());
-            customerDTO.setNip(c.getNip());
             coachesDTO.add(customerDTO);
         }
         return coachesDTO;

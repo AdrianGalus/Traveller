@@ -13,8 +13,6 @@ public class CustomerDetails {
     private String phone;
     @Column(nullable = false, unique = true)
     private String email;
-    @Column(unique = true)
-    private String nip;
     @OneToOne(optional = false, fetch = FetchType.EAGER)
     private Customer customer;
 
@@ -41,14 +39,6 @@ public class CustomerDetails {
     public void setEmail(String email) {
 
         this.email = email;
-    }
-    public String getNip() {
-
-        return nip;
-    }
-    public void setNip(String nip) {
-
-        this.nip = nip;
     }
     public Customer getCustomer() {
 

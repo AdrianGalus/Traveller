@@ -45,11 +45,6 @@ public class AddCustomerController {
             result.rejectValue("email", "errors.invalid", "Ten adres email już jest w bazie!");
             return "add-customer";
         }
-        boolean existedNip = customerService.checkNip(form.getNip());
-        if(existedNip) {
-            result.rejectValue("nip", "errors.invalid", "Ten numer nip już jest w bazie!");
-            return "add-customer";
-        }
         customerService.addCustomer(form);
         return "redirect:/home";
     }

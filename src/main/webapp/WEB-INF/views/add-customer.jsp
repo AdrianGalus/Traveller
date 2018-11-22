@@ -23,9 +23,6 @@
         <form:input path="email" placeholder="email"/>
         <form:errors path="email"/>
         <br/>
-        <form:input path="nip" placeholder="nip"/>
-        <form:errors path="nip"/>
-        <br/>
         <input type="submit" value="Add"/>
         <input type="reset" value="Clear"/>
     </form:form>
