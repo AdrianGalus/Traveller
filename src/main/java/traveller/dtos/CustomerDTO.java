@@ -3,7 +3,6 @@ package traveller.dtos;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.pl.NIP;
-
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -12,6 +11,7 @@ import java.util.List;
 public class CustomerDTO {
 
     private Long id;
+    private String name;
     @NotNull @NotBlank @Size(min = 3)
     private String firstName;
     @NotNull @NotBlank @Size(min = 3)
@@ -31,6 +31,14 @@ public class CustomerDTO {
     public void setId(Long id) {
 
         this.id = id;
+    }
+    public String getName() {
+
+        return name;
+    }
+    public void setName(String name) {
+
+        this.name = name;
     }
     public String getFirstName() {
 
