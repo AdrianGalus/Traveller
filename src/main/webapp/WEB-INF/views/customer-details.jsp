@@ -8,6 +8,8 @@
     <%@include file="header.jsp" %>
     Id: ${customerDTO.id}
     <br/>
+    Name: ${customerDTO.name}
+    <br/>
     First name: ${customerDTO.firstName}
     <br/>
     Last name: ${customerDTO.lastName}
@@ -15,8 +17,6 @@
     Phone: ${customerDTO.phone}
     <br/>
     Email: ${customerDTO.email}
-    <br/>
-    NIP: ${customerDTO.nip}
     <br/>
     Tours: <a href="/find-tour/customerDTO/${customerDTO.id}">Show more</a>
 </body>
