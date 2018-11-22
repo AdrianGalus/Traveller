@@ -103,6 +103,6 @@ public class CustomerDTO {
     }
     public String getDescription() {
 
-        return firstName + " " + lastName + ", nip: " + nip;
+        return name + firstName + " " + lastName + ", phone: " + phone;
     }
 }
