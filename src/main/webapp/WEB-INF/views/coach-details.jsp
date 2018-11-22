@@ -17,5 +17,7 @@
     Drivers: <a href="/find-driver/coachDTO/${coachDTO.id}">Show more</a>
     <br/>
     Tours: <a href="/find-tour/coachDTO/${coachDTO.id}">Show more</a>
+    <br/>
+    <a href="/edit-coach/${coachDTO.id}">Edit</a>
 </body>
 </html>
