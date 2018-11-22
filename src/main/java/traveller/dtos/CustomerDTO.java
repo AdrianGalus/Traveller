@@ -93,6 +93,7 @@ public class CustomerDTO {
 
         return "CustomerDTO{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", phone='" + phone + '\'' +
