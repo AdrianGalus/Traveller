@@ -11,12 +11,11 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
     @Column(nullable = false)
-    private String fistName;
+    private String firstName;
     @Column(nullable = false)
     private String lastName;
-    @Column(nullable = false, unique = true)
-    private String nip;
     @OneToMany(mappedBy = "customer")
     private List<Tour> tours = new ArrayList<>();
 
@@ -28,13 +27,21 @@ public class Customer {
 
         this.id = id;
     }
-    public String getFistName() {
+    public String getName() {
 
-        return fistName;
+        return name;
     }
-    public void setFistName(String fistName) {
+    public void setName(String name) {
 
-        this.fistName = fistName;
+        this.name = name;
+    }
+    public String getFirstName() {
+
+        return firstName;
+    }
+    public void setFirstName(String fistName) {
+
+        this.firstName = fistName;
     }
     public String getLastName() {
 
@@ -43,14 +50,6 @@ public class Customer {
     public void setLastName(String lastName) {
 
         this.lastName = lastName;
-    }
-    public String getNip() {
-
-        return nip;
-    }
-    public void setNip(String nip) {
-
-        this.nip = nip;
     }
     public List<Tour> getTours() {
 
