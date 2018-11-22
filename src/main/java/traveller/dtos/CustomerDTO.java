@@ -11,6 +11,7 @@ import java.util.List;
 public class CustomerDTO {
 
     private Long id;
+
     private String name;
     @NotNull @NotBlank @Size(min = 3)
     private String firstName;
@@ -20,7 +21,6 @@ public class CustomerDTO {
     private String phone;
     @NotNull @NotBlank @Email
     private String email;
-    @NotNull @NotBlank @NIP
     private String nip;
     private List<Long> toursId;
 
