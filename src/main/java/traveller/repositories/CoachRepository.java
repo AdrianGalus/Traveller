@@ -9,4 +9,6 @@ public interface CoachRepository extends JpaRepository<Coach, Long> {
 
     @Query("SELECT true FROM Coach c WHERE c.registrationNumber = :registrationNumber")
     Boolean isRegistrationNumberUsed(@Param("registrationNumber") String registrationNumber);
+    @Query("SELECT c.registrationNumber FROM Coach c WHERE c.id = :id")
+    String findRegistrationNumberByCoachId(@Param("id") Long id);
 }
