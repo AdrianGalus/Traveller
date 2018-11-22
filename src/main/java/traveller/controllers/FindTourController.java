@@ -38,7 +38,7 @@ public class FindTourController {
                 model.addAttribute("allTours", tourService.findAllToursByCoachId(id));
                 break;
             case "driverDTO":
-
+                model.addAttribute("allTours", tourService.findAllToursByDriverId(id));
                 break;
             case "customerDTO":
                 model.addAttribute("allTours", tourService.findAllToursByCustomerId(id));
