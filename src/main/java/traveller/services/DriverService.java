@@ -22,6 +22,10 @@ public class DriverService {
     @Autowired
     DriverRepository driverRepository;
 
+    public Driver findById(Long id) {
+
+        return driverRepository.findById(id);
+    }
     public DriverDTO findDetails(Long id) {
 
         DriverDTO driverDTO = new DriverDTO();
@@ -80,6 +84,12 @@ public class DriverService {
         driverDetails.setEmail(form.getEmail());
         driverDetailsRepository.save(driverDetails);
     }
+    public void setCoachInDrivers(Coach coach, List<Long> selectedDriversId) {
+
+        List<Driver> selectedDrivers = createDriversListByDriverId(selectedDriversId);
+        setCoachInSelectedDrivers(coach, selectedDrivers);
+        clearCoachInDeselectedDrivers(coach, selectedDrivers);
+    }
     private List<DriverDTO> createDriverDtoList(List<DriverDetails> loadedDriverDetails) {
 
         List<DriverDTO> driversDTO = new ArrayList<>();
@@ -93,5 +103,32 @@ public class DriverService {
             driversDTO.add(driverDTO);
         }
         return driversDTO;
+    }
+    private List<Driver> createDriversListByDriverId(List<Long> selectedDriversId) {
+
+        List<Driver> selectedDrivers = new ArrayList<>();
+        for(Long selectedDriverId : selectedDriversId) {
+            Driver selectedDriver = findById(selectedDriverId);
+            selectedDrivers.add(selectedDriver);
+        }
+        return selectedDrivers;
+    }
+    private void setCoachInSelectedDrivers(Coach coach, List<Driver> selectedDrivers) {
+
+        for(Driver selectedDriver : selectedDrivers) {
+            if(!coach.getDrivers().contains(selectedDriver)) {
+                selectedDriver.setCoach(coach);
+                driverRepository.save(selectedDriver);
+            }
+        }
+    }
+    private void clearCoachInDeselectedDrivers(Coach coach, List<Driver> selectedDrivers) {
+
+        for(Driver currentDriver : coach.getDrivers()) {
+            if(!selectedDrivers.contains(currentDriver)) {
+                currentDriver.setCoach(null);
+                driverRepository.save(currentDriver);
+            }
+        }
     }
 }
