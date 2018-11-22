@@ -52,7 +52,7 @@ public class CustomerService {
     }
     public boolean checkNip(String nip) {
 
-        Boolean check = customerRepository.isNipUsed(nip);
+        Boolean check = customerDetailsRepository.isNipUsed(nip);
         return check != null ? check : false;
     }
     public void addCustomer(CustomerDTO form) {
