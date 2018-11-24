@@ -5,5 +5,4 @@ import traveller.model.Driver;
 
 public interface DriverRepository extends JpaRepository<Driver, Long> {
 
-    Driver findById(Long id);
 }
