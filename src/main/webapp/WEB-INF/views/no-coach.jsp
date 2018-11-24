@@ -6,7 +6,5 @@
 <body>
     <%@include file="header.jsp" %>
     We have no available coach in this term!
-    <br/>
-    <a href="/check-tour">Check another term</a>
 </body>
 </html>
