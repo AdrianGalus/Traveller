@@ -48,21 +48,19 @@ public class AddTourController {
         if(result.hasErrors()) {
             return "check-tour";
         }
-        List<CoachDTO> coaches = tourService.findAvailableCoaches();
-        if(coaches == null ||coaches.size() < 1) {
-            return "no-coach";
-        }
         if(form.getDepartureTime().isAfter(form.getArrivalTime())) {
             result.rejectValue("arrivalTime", "errors.invalid", "Data powrotu nie może być wcześniejsza niż data wyjazdu!");
             return "check-tour";
         }
-        else {
-            model.addAttribute("selectCoach", new CoachDTO());
-            model.addAttribute("availableCoaches", coaches);
-            model.addAttribute("tourFormId", "tourForm" + System.identityHashCode(form));
-            session.setAttribute("tourForm" + System.identityHashCode(form), form);
-            return "confirm-tour";
+        List<CoachDTO> coaches = tourService.findAvailableCoaches();
+        if(coaches == null ||coaches.size() < 1) {
+            return "no-coach";
         }
+        model.addAttribute("selectCoach", new CoachDTO());
+        model.addAttribute("availableCoaches", coaches);
+        model.addAttribute("tourFormId", "tourForm" + System.identityHashCode(form));
+        session.setAttribute("tourForm" + System.identityHashCode(form), form);
+        return "confirm-tour";
     }
     @PostMapping("/confirm")
     public String confirmTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
