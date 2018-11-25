@@ -103,7 +103,7 @@ public class TourService {
         tour.setArrivalDate(confirmedTour.getArrivalTime());
         tour.setCustomer(customerRepository.findOne(confirmedTour.getCustomerId()));
         tour.setCoach(coachRepository.findOne(confirmedTour.getCoachId()));
-        //TODO set drivers 
+        //TODO set drivers
         tourRepository.save(tour);
     }
     private void saveTourDetailsInDB(TourDetails tourDetails, Tour tour, TourDTO confirmedTour) {
