@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.DriverDTO;
 import traveller.dtos.UserDTO;
+import traveller.services.CoachService;
 import traveller.services.DriverService;
 import javax.validation.Valid;
 
@@ -16,6 +17,8 @@ public class AddDriverController {
 
     @Autowired
     DriverService driverService;
+    @Autowired
+    CoachService coachService;
 
     @GetMapping
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
@@ -23,6 +26,7 @@ public class AddDriverController {
         if(loggedUser == null) {
             return "redirect:/home";
         }
+        model.addAttribute("availableCoaches", coachService.findAvailableCoaches());
         model.addAttribute("driverForm", new DriverDTO());
         return "add-driver";
     }
