@@ -24,6 +24,6 @@
     <br/>
     Drivers: <a href="/find-driver/tourDTO/${tourDTO.id}">Show more</a>
     <br/>
-    <a href="/edit-tour/${tourDTO.id}">Edit</a>
+    <a href="/tour/check/${tourDTO.id}">Edit</a>
 </body>
 </html>
