@@ -21,6 +21,9 @@
         <form:input path="email" placeholder="email"/>
         <form:errors path="email"/>
         <br/>
+        <form:select path="coachId" items="${availableCoaches}" itemLabel="description" itemValue="id"/>
+        <form:errors path="coachId"/>
+        <br/>
         <input type="submit" value="Add"/>
         <input type="reset" value="Clear"/>
     </form:form>
