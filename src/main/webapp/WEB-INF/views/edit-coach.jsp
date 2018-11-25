@@ -17,8 +17,6 @@
         <form:input path="mark" placeholder="mark"/>
         <form:errors path="mark"/>
         <br/>
-        <form:select path="driversId" items="${drivers}" itemValue="id" itemLabel="description"/>
-        <br/>
         <input type="submit" value="Confirm"/>
     </form:form>
 </body>
