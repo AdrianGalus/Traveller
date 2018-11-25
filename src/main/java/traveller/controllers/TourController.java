@@ -5,10 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import traveller.dtos.CoachDTO;
-import traveller.dtos.CustomerDTO;
-import traveller.dtos.TourDTO;
-import traveller.dtos.UserDTO;
+import traveller.dtos.*;
 import traveller.services.TourService;
 import traveller.services.CustomerService;
 import javax.servlet.http.HttpSession;
@@ -16,8 +13,8 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/add-tour")
-public class AddTourController {
+@RequestMapping("/tour")
+public class TourController {
 
     @Autowired
     TourService tourService;
@@ -29,18 +26,25 @@ public class AddTourController {
 
         return customerService.findAllCustomers();
     }
-    @GetMapping("/check")
-    public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
+    @GetMapping("/check/{id}")
+    public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
+                            @PathVariable(value = "id") Long id) {
 
         if(loggedUser == null) {
             return "redirect:/home";
         }
-        model.addAttribute("tourForm", new TourDTO());
+        if(id == 0) {
+            model.addAttribute("tourForm", new TourDTO());
+        }
+        else {
+            model.addAttribute("tourForm", tourService.findDetails(id));
+        }
         return "check-tour";
     }
-    @PostMapping("/check")
-    public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                @ModelAttribute("tourForm") @Valid TourDTO form, BindingResult result, Model model, HttpSession session) {
+    @PostMapping("/check/{id}")
+    public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
+                        @ModelAttribute("tourForm") @Valid TourDTO form, BindingResult result, HttpSession session,
+                        @PathVariable(value = "id", required = false) Long id) {
 
         if(loggedUser == null) {
             return "redirect:/home";
@@ -49,15 +53,20 @@ public class AddTourController {
             return "check-tour";
         }
         if(form.getDepartureTime().isAfter(form.getArrivalTime())) {
-            result.rejectValue("arrivalTime", "errors.invalid", "Data powrotu nie może być wcześniejsza niż data wyjazdu!");
+            result.rejectValue("arrivalTime", "errors.invalid", "Data powrotu nie może być wcześniejsza od daty wyjazdu");
             return "check-tour";
         }
         List<CoachDTO> coaches = tourService.findAvailableCoaches();
         if(coaches == null ||coaches.size() < 1) {
             return "no-coach";
         }
+        List<DriverDTO> drivers = tourService.findAvailableDrivers();
+        if(drivers == null || drivers.size() < 1) {
+            return "no-drivers";
+        }
         model.addAttribute("selectCoach", new CoachDTO());
         model.addAttribute("availableCoaches", coaches);
+        model.addAttribute("availableDrivers", drivers);
         model.addAttribute("tourFormId", "tourForm" + System.identityHashCode(form));
         session.setAttribute("tourForm" + System.identityHashCode(form), form);
         return "confirm-tour";
@@ -80,7 +89,12 @@ public class AddTourController {
             return "confirm-tour";
         }
         firstStepForm.setCoachId(form.getId());
-        tourService.confirmTour(firstStepForm);
+        if(firstStepForm.getId() == null) {
+            tourService.addTour(firstStepForm);
+        }
+        else {
+            tourService.editTour(firstStepForm);
+        }
         session.removeAttribute(tourFormId);
         return "redirect:/home";
     }
