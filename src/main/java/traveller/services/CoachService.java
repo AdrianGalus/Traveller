@@ -79,7 +79,6 @@ public class CoachService {
 
         Coach coach = coachRepository.findOne(form.getId());
         coach.setRegistrationNumber(form.getRegistrationNumber());
-        driverService.setCoachInDrivers(coach, form.getDriversId());
         coachRepository.save(coach);
         CoachDetails coachDetails = coachDetailsRepository.findByCoachId(form.getId());
         coachDetails.setCoach(coach);
