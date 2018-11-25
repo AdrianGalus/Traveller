@@ -17,7 +17,7 @@
         <a href="/add-customer">Add customer</a>
         <br/>
         <a href="/find-tour/all">Show all tours</a>
-        <a href="/add-tour/check">Add tour</a>
+        <a href="/tour/check/0">Add tour</a>
         <br/>
     </c:if>
 </body>
