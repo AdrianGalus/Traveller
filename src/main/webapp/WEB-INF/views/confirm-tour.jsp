@@ -18,13 +18,11 @@
     Price: ${tourForm.price}
     <br/>
     Select coach:
-    <form:form action="/add-tour/confirm" method="post" modelAttribute="selectCoach">
+    <form:form action="/tour/confirm" method="post" modelAttribute="selectCoach">
         <input type="hidden" name="tourFormId" value="${tourFormId}"/>
         <form:select path="id" items="${availableCoaches}" itemLabel="description" itemValue="id"/>
         <br/>
         <input type="submit" value="Confirm">
     </form:form>
-    <br/>
-    <a href="/add-tour/check">Check another term</a>
 </body>
 </html>
