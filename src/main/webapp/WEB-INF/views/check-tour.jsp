@@ -8,6 +8,7 @@
     <%@include file="header.jsp" %>
     Add new tour
     <form:form method="post" modelAttribute="tourForm">
+        <form:hidden path="id"/>
         <form:input path="destination" placeholder="destinantion"/>
         <form:errors path="destination"/>
         <br/>
