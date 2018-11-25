@@ -19,8 +19,8 @@ public interface DriverDetailsRepository extends JpaRepository<DriverDetails, Lo
     List<DriverDetails> findAllByCoachId(@Param("id") Long id);
     @Query("SELECT dd FROM DriverDetails dd JOIN dd.driver.tours t WHERE t.id = :id")
     List<DriverDetails> findAllByTourId(@Param("id") Long id);
-    @Query("SELECT dd.phone FROM DriverDetails dd WHERE dd.id = :id")
+    @Query("SELECT dd.phone FROM DriverDetails dd WHERE dd.driver.id = :id")
     String findPhoneByDriverId(@Param("id") Long id);
-    @Query("SELECT dd.email FROM DriverDetails dd WHERE dd.id = :id")
+    @Query("SELECT dd.email FROM DriverDetails dd WHERE dd.driver.id = :id")
     String findEmailByDriverId(@Param("id") Long id);
 }
