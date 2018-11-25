@@ -91,6 +91,13 @@ public class DriverService {
         DriverDetails driverDetails = new DriverDetails();
         saveDriverDetailsInDB(driverDetails, driver, form);
     }
+    public void editDriver(DriverDTO form) {
+
+        Driver driver = driverRepository.findOne(form.getId());
+        saveDriverInDB(driver, form);
+        DriverDetails driverDetails = driverDetailsRepository.findByDriverId(form.getId());
+        saveDriverDetailsInDB(driverDetails, driver, form);
+    }
     private void saveDriverInDB(Driver driver, DriverDTO confirmedDriver) {
 
         driver.setFirstName(confirmedDriver.getFirstName());
