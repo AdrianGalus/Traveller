@@ -68,10 +68,18 @@ public class DriverService {
         Boolean check = driverDetailsRepository.isPhoneUsed(phone);
         return check != null ? check : false;
     }
+    public String findPhoneByDriverId(Long id) {
+
+        return driverDetailsRepository.findPhoneByDriverId(id);
+    }
     public boolean checkEmail(String email) {
 
         Boolean check = driverDetailsRepository.isEmailUsed(email);
         return check != null ? check : false;
+    }
+    public String findEmailByDriverId(Long id) {
+
+        return driverDetailsRepository.findEmailByDriverId(id);
     }
     public void addDriver(DriverDTO form) {
 
