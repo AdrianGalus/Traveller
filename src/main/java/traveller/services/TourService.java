@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CoachDTO;
+import traveller.dtos.DriverDTO;
 import traveller.dtos.TourDTO;
 import traveller.model.*;
 import traveller.repositories.*;
@@ -24,6 +25,8 @@ public class TourService {
     CustomerRepository customerRepository;
     @Autowired
     CoachService coachService;
+    @Autowired
+    DriverService driverService;
 
     public TourDTO findDetails(Long id) {
 
@@ -75,20 +78,40 @@ public class TourService {
 
         return coachService.findAvailableCoaches();
     }
-    public void confirmTour(TourDTO confirmedTour) {
+    public List<DriverDTO> findAvailableDrivers() {
+
+        return driverService.findAvailableDrivers();
+    }
+    public void addTour(TourDTO confirmedTour) {
 
         Tour newTour = new Tour();
-        newTour.setDestination(confirmedTour.getDestination());
-        newTour.setDepartureDate(confirmedTour.getDepartureTime());
-        newTour.setArrivalDate(confirmedTour.getArrivalTime());
-        newTour.setCoach(coachRepository.findOne(confirmedTour.getCoachId()));
-        newTour.setCustomer(customerRepository.findOne(confirmedTour.getCustomerId()));
-        tourRepository.save(newTour);
+        saveTourInDB(newTour, confirmedTour);
         TourDetails newTourDetails = new TourDetails();
-        newTourDetails.setDistance(confirmedTour.getDistance());
-        newTourDetails.setPrice(confirmedTour.getPrice());
-        newTourDetails.setTour(newTour);
-        tourDetailsRepository.save(newTourDetails);
+        saveTourDetailsInDB(newTourDetails, newTour, confirmedTour);
+    }
+    public void editTour(TourDTO confirmedTour) {
+
+        Tour editedTour = tourRepository.findOne(confirmedTour.getId());
+        saveTourInDB(editedTour, confirmedTour);
+        TourDetails editedTourDetails = tourDetailsRepository.findByTourId(confirmedTour.getId());
+        saveTourDetailsInDB(editedTourDetails, editedTour, confirmedTour);
+    }
+    private void saveTourInDB(Tour tour, TourDTO confirmedTour) {
+
+        tour.setDestination(confirmedTour.getDestination());
+        tour.setDepartureDate(confirmedTour.getDepartureTime());
+        tour.setArrivalDate(confirmedTour.getArrivalTime());
+        tour.setCustomer(customerRepository.findOne(confirmedTour.getCustomerId()));
+        tour.setCoach(coachRepository.findOne(confirmedTour.getCoachId()));
+        //TODO set drivers 
+        tourRepository.save(tour);
+    }
+    private void saveTourDetailsInDB(TourDetails tourDetails, Tour tour, TourDTO confirmedTour) {
+
+        tourDetails.setDistance(confirmedTour.getDistance());
+        tourDetails.setPrice(confirmedTour.getPrice());
+        tourDetails.setTour(tour);
+        tourDetailsRepository.save(tourDetails);
     }
     private List<TourDTO> createTourDtoList(List<TourDetails> loadedToursDetails) {
 
