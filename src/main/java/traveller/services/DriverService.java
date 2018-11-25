@@ -8,6 +8,7 @@ import traveller.model.Coach;
 import traveller.model.Driver;
 import traveller.model.DriverDetails;
 import traveller.model.Tour;
+import traveller.repositories.CoachRepository;
 import traveller.repositories.DriverDetailsRepository;
 import traveller.repositories.DriverRepository;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class DriverService {
     DriverDetailsRepository driverDetailsRepository;
     @Autowired
     DriverRepository driverRepository;
+    @Autowired
+    CoachRepository coachRepository;
 
     public DriverDTO findDetails(Long id) {
 
@@ -84,13 +87,23 @@ public class DriverService {
     public void addDriver(DriverDTO form) {
 
         Driver driver = new Driver();
-        driver.setFirstName(form.getFirstName());
-        driver.setLastName(form.getLastName());
-        driverRepository.save(driver);
+        saveDriverInDB(driver, form);
         DriverDetails driverDetails = new DriverDetails();
+        saveDriverDetailsInDB(driverDetails, driver, form);
+    }
+    private void saveDriverInDB(Driver driver, DriverDTO confirmedDriver) {
+
+        driver.setFirstName(confirmedDriver.getFirstName());
+        driver.setLastName(confirmedDriver.getLastName());
+        driver.setCoach(coachRepository.findOne(confirmedDriver.getCoachId()));
+        //TODO setTours
+        driverRepository.save(driver);
+    }
+    private void saveDriverDetailsInDB(DriverDetails driverDetails, Driver driver, DriverDTO confirmedDriver) {
+
+        driverDetails.setPhone(confirmedDriver.getPhone());
+        driverDetails.setEmail(confirmedDriver.getEmail());
         driverDetails.setDriver(driver);
-        driverDetails.setPhone(form.getPhone());
-        driverDetails.setEmail(form.getEmail());
         driverDetailsRepository.save(driverDetails);
     }
     private List<DriverDTO> createDriverDtoList(List<DriverDetails> loadedDriverDetails) {
