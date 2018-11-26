@@ -44,10 +44,18 @@ public class CustomerService {
         Boolean check = customerDetailsRepository.isPhoneUsed(phone);
         return check != null ? check : false;
     }
+    public String findPhoneByCustomerId(Long id) {
+
+        return customerDetailsRepository.findPhoneByCustomerId(id);
+    }
     public boolean checkEmail(String email) {
 
         Boolean check = customerDetailsRepository.isEmailUsed(email);
         return check != null ? check : false;
+    }
+    public String findEmailByCustomerId(Long id) {
+
+        return customerDetailsRepository.findEmailByCustomerId(id);
     }
     public void addCustomer(CustomerDTO form) {
 
