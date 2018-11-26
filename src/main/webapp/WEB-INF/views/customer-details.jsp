@@ -19,5 +19,7 @@
     Email: ${customerDTO.email}
     <br/>
     Tours: <a href="/find-tour/customerDTO/${customerDTO.id}">Show more</a>
+    <br/>
+    <a href="/edit-customer/${customerDTO.id}">Edit</a>
 </body>
 </html>
