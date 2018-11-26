@@ -13,4 +13,8 @@ public interface CustomerDetailsRepository extends JpaRepository<CustomerDetails
     Boolean isEmailUsed(@Param("email") String email);
     @Query("SELECT cd FROM CustomerDetails cd WHERE cd.customer.id = :id")
     CustomerDetails findByCustomerId(@Param("id") Long id);
+    @Query("SELECT cd.phone FROM CustomerDetails cd WHERE cd.customer.id = :id")
+    String findPhoneByCustomerId(@Param("id") Long id);
+    @Query("SELECT cd.email FROM CustomerDetails cd WHERE cd.customer.id = :id")
+    String findEmailByCustomerId(@Param("id") Long id);
 }
