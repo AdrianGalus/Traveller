@@ -60,20 +60,35 @@ public class CustomerService {
     public void addCustomer(CustomerDTO form) {
 
         Customer customer = new Customer();
-        customer.setName(form.getName());
-        customer.setFirstName(form.getFirstName());
-        customer.setLastName(form.getLastName());
-        customerRepository.save(customer);
+        saveCustomerInDB(customer, form);
         CustomerDetails customerDetails = new CustomerDetails();
-        customerDetails.setCustomer(customer);
-        customerDetails.setPhone(form.getPhone());
-        customerDetails.setEmail(form.getEmail());
-        customerDetailsRepository.save(customerDetails);
+        saveCustomerDetailsInDB(customerDetails, customer, form);
+    }
+    public void editCustomer(CustomerDTO form) {
+
+        Customer customer = customerRepository.findOne(form.getId());
+        saveCustomerInDB(customer, form);
+        CustomerDetails customerDetails = customerDetailsRepository.findByCustomerId(form.getId());
+        saveCustomerDetailsInDB(customerDetails, customer, form);
     }
     public List<CustomerDTO> findAllCustomers() {
 
         List<CustomerDetails> loadedCustomers = customerDetailsRepository.findAll();
         return createCustomerDtoList(loadedCustomers);
+    }
+    private void saveCustomerInDB(Customer customer, CustomerDTO confirmedCustomer) {
+
+        customer.setName(confirmedCustomer.getName());
+        customer.setFirstName(confirmedCustomer.getFirstName());
+        customer.setLastName(confirmedCustomer.getLastName());
+        customerRepository.save(customer);
+    }
+    private void saveCustomerDetailsInDB(CustomerDetails customerDetails, Customer customer, CustomerDTO confirmedCustomer) {
+
+        customerDetails.setPhone(confirmedCustomer.getPhone());
+        customerDetails.setEmail(confirmedCustomer.getEmail());
+        customerDetails.setCustomer(customer);
+        customerDetailsRepository.save(customerDetails);
     }
     private List<CustomerDTO> createCustomerDtoList(List<CustomerDetails> loadedCustomers) {
 
