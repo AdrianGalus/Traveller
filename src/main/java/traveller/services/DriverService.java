@@ -98,6 +98,11 @@ public class DriverService {
         DriverDetails driverDetails = driverDetailsRepository.findByDriverId(form.getId());
         saveDriverDetailsInDB(driverDetails, driver, form);
     }
+    public void deleteDriver(Long id) {
+
+        driverDetailsRepository.delete(driverDetailsRepository.findByDriverId(id));
+        driverRepository.delete(id);
+    }
     private void saveDriverInDB(Driver driver, DriverDTO confirmedDriver) {
 
         driver.setFirstName(confirmedDriver.getFirstName());
