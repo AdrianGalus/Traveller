@@ -11,11 +11,11 @@
         <form:input path="registrationNumber" placeholder="registrationNumber"/>
         <form:errors path="registrationNumber"/>
         <br/>
-        <form:input path="model" placeholder="model"/>
-        <form:errors path="model"/>
-        <br/>
         <form:input path="mark" placeholder="mark"/>
         <form:errors path="mark"/>
+        <br/>
+        <form:input path="model" placeholder="model"/>
+        <form:errors path="model"/>
         <br/>
         <input type="submit" value="Confirm"/>
     </form:form>
