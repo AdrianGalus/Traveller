@@ -5,6 +5,7 @@
     <title>Confirm delete</title>
 </head>
 <body>
+    <%@ include file="header.jsp"%>
     <c:if test="${type == 'customer'}">
         Are you sure to delete customer about ID ${id}?
         <br/>
