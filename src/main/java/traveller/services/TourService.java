@@ -96,6 +96,11 @@ public class TourService {
         TourDetails editedTourDetails = tourDetailsRepository.findByTourId(confirmedTour.getId());
         saveTourDetailsInDB(editedTourDetails, editedTour, confirmedTour);
     }
+    public void deleteTour(Long id) {
+
+        tourDetailsRepository.delete(tourDetailsRepository.findByTourId(id));
+        tourRepository.delete(id);
+    }
     private void saveTourInDB(Tour tour, TourDTO confirmedTour) {
 
         tour.setDestination(confirmedTour.getDestination());
