@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CoachDTO;
-import traveller.model.Coach;
-import traveller.model.CoachDetails;
-import traveller.model.Driver;
-import traveller.model.Tour;
+import traveller.model.*;
 import traveller.repositories.CoachDetailsRepository;
 import traveller.repositories.CoachRepository;
+import traveller.repositories.DriverDetailsRepository;
+import traveller.repositories.TourDetailsRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +23,10 @@ public class CoachService {
     CoachDetailsRepository coachDetailsRepository;
     @Autowired
     DriverService driverService;
+    @Autowired
+    DriverDetailsRepository driverDetailsRepository;
+    @Autowired
+    TourDetailsRepository tourDetailsRepository;
 
     public CoachDTO findDetails(Long id) {
 
@@ -85,6 +89,15 @@ public class CoachService {
         coachDetails.setMark(form.getMark());
         coachDetails.setModel(form.getModel());
         coachDetailsRepository.save(coachDetails);
+    }
+    public void deleteCoach(Long id) {
+
+        List<DriverDetails> drivers = driverDetailsRepository.findAllByCoachId(id);
+        for(DriverDetails dd : drivers) {
+            dd.getDriver().setCoach(null);
+        }
+        coachDetailsRepository.delete(coachDetailsRepository.findByCoachId(id));
+        coachRepository.delete(id);
     }
     private List<CoachDTO> createCoachDtoList(List<CoachDetails> loadedCoachesDetails) {
 
