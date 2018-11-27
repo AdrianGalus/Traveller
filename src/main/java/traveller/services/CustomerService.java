@@ -71,6 +71,11 @@ public class CustomerService {
         CustomerDetails customerDetails = customerDetailsRepository.findByCustomerId(form.getId());
         saveCustomerDetailsInDB(customerDetails, customer, form);
     }
+    public void deleteCustomer(Long id) {
+
+        customerDetailsRepository.delete(customerDetailsRepository.findByCustomerId(id));
+        customerRepository.delete(id);
+    }
     public List<CustomerDTO> findAllCustomers() {
 
         List<CustomerDetails> loadedCustomers = customerDetailsRepository.findAll();
