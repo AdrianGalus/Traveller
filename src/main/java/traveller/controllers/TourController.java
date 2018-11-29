@@ -64,7 +64,7 @@ public class TourController {
         if(drivers == null || drivers.size() < 1) {
             return "no-drivers";
         }
-        model.addAttribute("selectCoach", new CoachDTO());
+        model.addAttribute("confirmedTour", form);
         model.addAttribute("availableCoaches", coaches);
         model.addAttribute("availableDrivers", drivers);
         model.addAttribute("tourFormId", "tourForm" + System.identityHashCode(form));
@@ -73,7 +73,7 @@ public class TourController {
     }
     @PostMapping("/confirm")
     public String confirmTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                              @ModelAttribute("selectCoach") CoachDTO form, BindingResult result,
+                              @ModelAttribute("confirmedTour") TourDTO form, BindingResult result,
                               @RequestParam("tourFormId") String tourFormId, HttpSession session, Model model) {
 
         if(loggedUser == null) {
@@ -88,7 +88,7 @@ public class TourController {
             model.addAttribute("tourFormId", tourFormId);
             return "confirm-tour";
         }
-        firstStepForm.setCoachId(form.getId());
+        firstStepForm.setCoachId(form.getCoachId());
         if(firstStepForm.getId() == null) {
             tourService.addTour(firstStepForm);
         }
