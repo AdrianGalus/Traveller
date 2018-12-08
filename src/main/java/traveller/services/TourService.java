@@ -6,8 +6,17 @@ import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.DriverDTO;
 import traveller.dtos.TourDTO;
-import traveller.model.*;
-import traveller.repositories.*;
+import traveller.model.coach.Coach;
+import traveller.model.customer.Customer;
+import traveller.model.driver.Driver;
+import traveller.model.tour.Tour;
+import traveller.model.tour.TourDetails;
+import traveller.repositories.coach.CoachRepository;
+import traveller.repositories.customer.CustomerRepository;
+import traveller.repositories.driver.DriverRepository;
+import traveller.repositories.tour.TourDetailsRepository;
+import traveller.repositories.tour.TourRepository;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +36,8 @@ public class TourService {
     CoachService coachService;
     @Autowired
     DriverService driverService;
+    @Autowired
+    DriverRepository driverRepository;
 
     public TourDTO findDetails(Long id) {
 
@@ -108,7 +119,11 @@ public class TourService {
         tour.setArrivalDate(confirmedTour.getArrivalTime());
         tour.setCustomer(customerRepository.findOne(confirmedTour.getCustomerId()));
         tour.setCoach(coachRepository.findOne(confirmedTour.getCoachId()));
-        //TODO set drivers
+        List<Driver> drivers = new ArrayList<>();
+        for(Long driverId : confirmedTour.getDriversId()) {
+            drivers.add(driverRepository.findOne(driverId));
+        }
+        tour.setDrivers(drivers);
         tourRepository.save(tour);
     }
     private void saveTourDetailsInDB(TourDetails tourDetails, Tour tour, TourDTO confirmedTour) {

@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import traveller.dtos.CustomerDTO;
-import traveller.model.Customer;
-import traveller.model.CustomerDetails;
-import traveller.model.Tour;
-import traveller.repositories.CustomerDetailsRepository;
-import traveller.repositories.CustomerRepository;
+import traveller.model.customer.Customer;
+import traveller.model.customer.CustomerDetails;
+import traveller.model.tour.Tour;
+import traveller.repositories.customer.CustomerDetailsRepository;
+import traveller.repositories.customer.CustomerRepository;
 import java.util.ArrayList;
 import java.util.List;
 
