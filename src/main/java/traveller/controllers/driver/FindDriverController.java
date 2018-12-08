@@ -22,7 +22,7 @@ public class FindDriverController {
                                  Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("allDrivers", driverService.findAllDrivers());
         return "all-drivers";
@@ -32,7 +32,7 @@ public class FindDriverController {
                                          Model model, @PathVariable String dto, @PathVariable Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         switch(dto) {
             case "tourDTO":

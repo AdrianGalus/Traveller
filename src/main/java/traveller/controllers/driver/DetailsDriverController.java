@@ -23,7 +23,7 @@ public class DetailsDriverController {
                               @PathVariable Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         DriverDTO driverDTO = driverService.findDetails(id);
         model.addAttribute("driverDTO", driverDTO);

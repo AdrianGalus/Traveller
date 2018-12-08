@@ -24,7 +24,7 @@ public class AddDriverController {
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("availableCoaches", coachService.findAvailableCoaches());
         model.addAttribute("driverForm", new DriverDTO());
@@ -35,7 +35,7 @@ public class AddDriverController {
                                 @ModelAttribute("driverForm") @Valid DriverDTO form, BindingResult result) {
 
         if(loggedUSer == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "add-driver";
@@ -51,6 +51,6 @@ public class AddDriverController {
             return "add-driver";
         }
         driverService.addDriver(form);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

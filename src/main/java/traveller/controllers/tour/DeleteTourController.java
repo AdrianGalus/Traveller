@@ -22,7 +22,7 @@ public class DeleteTourController {
                              @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("id", id);
         model.addAttribute("type", "tour");
@@ -33,9 +33,9 @@ public class DeleteTourController {
                                     @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         tourService.deleteTour(id);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

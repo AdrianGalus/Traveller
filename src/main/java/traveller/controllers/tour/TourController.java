@@ -31,7 +31,7 @@ public class TourController {
                             @PathVariable(value = "id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(id == 0) {
             model.addAttribute("tourForm", new TourDTO());
@@ -47,7 +47,7 @@ public class TourController {
                         @PathVariable(value = "id", required = false) Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "check-tour";
@@ -77,11 +77,11 @@ public class TourController {
                               @RequestParam("tourFormId") String tourFormId, HttpSession session, Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         TourDTO firstStepForm = (TourDTO) session.getAttribute(tourFormId);
         if(firstStepForm == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             model.addAttribute("tourForm", firstStepForm);
@@ -97,6 +97,6 @@ public class TourController {
             tourService.editTour(firstStepForm);
         }
         session.removeAttribute(tourFormId);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

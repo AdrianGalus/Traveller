@@ -23,7 +23,7 @@ public class DetailsCoachController {
                               @PathVariable Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         CoachDTO coachDTO = coachService.findDetails(id);
         model.addAttribute("coachDTO", coachDTO);

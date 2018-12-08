@@ -25,7 +25,7 @@ public class EditDriverController {
                              @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("availableCoaches", coachService.findAvailableCoaches());
         model.addAttribute("driverForm", driverService.findDetails(id));
@@ -36,7 +36,7 @@ public class EditDriverController {
                     @ModelAttribute("driverForm") @Valid DriverDTO form, BindingResult result, @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "edit-driver";
@@ -50,7 +50,7 @@ public class EditDriverController {
             return "edit-driver";
         }
         driverService.editDriver(form);
-        return "redirect:/home";
+        return "redirect:/";
     }
     private boolean checkPhone(DriverDTO form) {
 

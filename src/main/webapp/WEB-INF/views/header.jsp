@@ -10,7 +10,7 @@
     </c:if>
     <c:if test="${not empty loggedUser}">
         <h3>Hello ${loggedUser.login}!</h3>
-        <a href="/home">Home</a> <a href="/logout">Logout</a>
+        <a href="/">Home</a> <a href="/logout">Logout</a>
         <br/>
     </c:if>
 </body>

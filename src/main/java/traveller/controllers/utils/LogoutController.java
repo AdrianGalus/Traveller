@@ -13,6 +13,6 @@ public class LogoutController {
     public String logout(HttpSession session) {
 
         session.invalidate();
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

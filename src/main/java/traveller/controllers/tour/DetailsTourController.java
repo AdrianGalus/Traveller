@@ -23,7 +23,7 @@ public class DetailsTourController {
                               @PathVariable Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         TourDTO tourDTO = tourService.findDetails(id);
         model.addAttribute("tourDTO", tourDTO);

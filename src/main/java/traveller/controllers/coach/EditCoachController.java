@@ -32,7 +32,7 @@ public class EditCoachController {
                             @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("coachForm", coachService.findDetails(id));
         return "edit-coach";
@@ -42,7 +42,7 @@ public class EditCoachController {
                    @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "edit-coach";
@@ -52,7 +52,7 @@ public class EditCoachController {
             return "edit-coach";
         }
         coachService.editCoach(form);
-        return "redirect:/home";
+        return "redirect:/";
     }
     private boolean checkRegistrationNumber(CoachDTO form) {
 

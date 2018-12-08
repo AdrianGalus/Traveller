@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
-
 import javax.validation.Valid;
 
 @Controller
@@ -22,7 +21,7 @@ public class AddCoachController {
     public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("coachForm", new CoachDTO());
         return "add-coach";
@@ -32,7 +31,7 @@ public class AddCoachController {
                                 @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
 
         if(loggedUSer == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "add-coach";
@@ -43,6 +42,6 @@ public class AddCoachController {
             return "add-coach";
         }
         coachService.addCoach(form);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

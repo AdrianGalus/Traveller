@@ -21,7 +21,7 @@ public class FindCustomerController {
                                    Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("allCustomers", customerService.findAllCustomers());
         return "all-customers";

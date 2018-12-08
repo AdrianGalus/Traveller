@@ -21,7 +21,7 @@ public class FindCoachController {
                                  Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("allCoaches", coachService.findAllCoaches());
         return "all-coaches";

@@ -11,7 +11,6 @@ import traveller.dtos.TourDTO;
 import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
 import traveller.services.TourService;
-
 import java.util.List;
 
 @Controller
@@ -28,7 +27,7 @@ public class DeleteCoachController {
                               @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         List<TourDTO> tours = tourService.findAllToursByCoachId(id);
         if(tours.size() > 0) {
@@ -44,10 +43,10 @@ public class DeleteCoachController {
                                      @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         coachService.deleteCoach(id);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }
 

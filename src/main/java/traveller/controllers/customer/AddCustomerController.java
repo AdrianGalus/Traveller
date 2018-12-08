@@ -21,7 +21,7 @@ public class AddCustomerController {
     public String addCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("customerForm", new CustomerDTO());
         return "add-customer";
@@ -30,7 +30,7 @@ public class AddCustomerController {
     public String addCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
                               @ModelAttribute("customerForm") @Valid CustomerDTO form, BindingResult result) {
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "add-customer";
@@ -46,6 +46,6 @@ public class AddCustomerController {
             return "add-customer";
         }
         customerService.addCustomer(form);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

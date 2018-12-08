@@ -21,7 +21,7 @@ public class FindTourController {
     public String findAllTours(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("allTours", tourService.findAllTours());
         return "all-tours";
@@ -31,7 +31,7 @@ public class FindTourController {
                                       Model model, @PathVariable String dto, @PathVariable Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         switch(dto) {
             case "coachDTO":

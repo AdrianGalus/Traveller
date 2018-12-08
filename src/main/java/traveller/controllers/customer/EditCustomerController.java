@@ -22,7 +22,7 @@ public class EditCustomerController {
                                @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("customerForm", customerService.findDetails(id));
         return "edit-customer";
@@ -32,7 +32,7 @@ public class EditCustomerController {
                                       @ModelAttribute("customerForm") @Valid CustomerDTO form, BindingResult result) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "edit-customer";

@@ -22,7 +22,7 @@ public class LoginController {
     public String login(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser != null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("userForm", new UserLoginDTO());
         return "login";
@@ -32,7 +32,7 @@ public class LoginController {
             @ModelAttribute("userForm") @Valid UserLoginDTO form, BindingResult result, HttpSession session) {
 
         if(loggedUser != null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         if(result.hasErrors()) {
             return "login";
@@ -44,6 +44,6 @@ public class LoginController {
         }
         UserDTO user = loginService.login(form.getLogin());
         session.setAttribute("loggedUser", user);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

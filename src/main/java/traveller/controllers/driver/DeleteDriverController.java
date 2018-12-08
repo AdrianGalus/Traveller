@@ -22,7 +22,7 @@ public class DeleteDriverController {
                                @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         model.addAttribute("id", id);
         model.addAttribute("type", "driver");
@@ -33,9 +33,9 @@ public class DeleteDriverController {
                                         @PathVariable("id") Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         driverService.deleteDriver(id);
-        return "redirect:/home";
+        return "redirect:/";
     }
 }

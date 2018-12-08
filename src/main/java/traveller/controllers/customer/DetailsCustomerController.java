@@ -23,7 +23,7 @@ public class DetailsCustomerController {
                               @PathVariable Long id) {
 
         if(loggedUser == null) {
-            return "redirect:/home";
+            return "redirect:/";
         }
         CustomerDTO customerDTO = customerService.findDetails(id);
         model.addAttribute("customerDTO", customerDTO);
