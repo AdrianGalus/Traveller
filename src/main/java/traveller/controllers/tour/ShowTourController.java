@@ -11,14 +11,14 @@ import traveller.dtos.UserDTO;
 import traveller.services.TourService;
 
 @Controller
-@RequestMapping("/find-tour")
-public class FindTourController {
+@RequestMapping("/show-tour")
+public class ShowTourController {
 
     @Autowired
     private TourService tourService;
 
     @GetMapping("/all")
-    public String findAllTours(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
+    public String showAllTours(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
 
         if(loggedUser == null) {
             return "redirect:/";
@@ -27,7 +27,7 @@ public class FindTourController {
         return "all-tours";
     }
     @GetMapping("/{dto}/{id}")
-    public String findAllToursByDtoId(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+    public String showAllToursByDtoId(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
                                       Model model, @PathVariable String dto, @PathVariable Long id) {
 
         if(loggedUser == null) {

@@ -7,16 +7,16 @@
 <body>
     <%@include file="header.jsp" %>
     <c:if test="${not empty loggedUser}">
-        <a href="/find-driver/all">Show all drivers</a>
+        <a href="/show-driver/all">Show all drivers</a>
         <a href="/add-driver">Add driver</a>
         <br/>
-        <a href="/find-coach/all">Show all coaches</a>
+        <a href="/show-coach/all">Show all coaches</a>
         <a href="/add-coach">Add coach</a>
         <br/>
-        <a href="/find-customer/all">Show all customers</a>
+        <a href="/show-customer/all">Show all customers</a>
         <a href="/add-customer">Add customer</a>
         <br/>
-        <a href="/find-tour/all">Show all tours</a>
+        <a href="/show-tour/all">Show all tours</a>
         <a href="/tour/check/0">Add tour</a>
         <br/>
     </c:if>

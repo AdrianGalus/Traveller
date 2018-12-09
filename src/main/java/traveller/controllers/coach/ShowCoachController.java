@@ -10,14 +10,14 @@ import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
 
 @Controller
-@RequestMapping("/find-coach")
-public class FindCoachController {
+@RequestMapping("/show-coach")
+public class ShowCoachController {
 
     @Autowired
     CoachService coachService;
 
     @GetMapping("/all")
-    public String findAllCoaches(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+    public String showAllCoaches(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
                                  Model model) {
 
         if(loggedUser == null) {

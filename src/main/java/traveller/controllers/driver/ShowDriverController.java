@@ -11,14 +11,14 @@ import traveller.dtos.UserDTO;
 import traveller.services.DriverService;
 
 @Controller
-@RequestMapping("/find-driver")
-public class FindDriverController {
+@RequestMapping("/show-driver")
+public class ShowDriverController {
 
     @Autowired
     DriverService driverService;
 
     @GetMapping("/all")
-    public String findAllDrivers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+    public String showAllDrivers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
                                  Model model) {
 
         if(loggedUser == null) {
@@ -28,8 +28,8 @@ public class FindDriverController {
         return "all-drivers";
     }
     @GetMapping("/{dto}/{id}")
-    public String findAllDriversByDtoId(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                         Model model, @PathVariable String dto, @PathVariable Long id) {
+    public String showAllDriversByDtoId(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
+                                        Model model, @PathVariable String dto, @PathVariable Long id) {
 
         if(loggedUser == null) {
             return "redirect:/";
