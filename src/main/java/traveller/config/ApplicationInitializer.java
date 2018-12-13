@@ -2,7 +2,7 @@ package traveller.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
+import traveller.filters.SessionFilter;
 import javax.servlet.Filter;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -27,6 +27,7 @@ public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherSe
 
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
         characterEncodingFilter.setEncoding("UTF-8");
-        return new Filter[] { characterEncodingFilter };
+        SessionFilter sessionFilter = new SessionFilter();
+        return new Filter[] {characterEncodingFilter, sessionFilter};
     }
 }
