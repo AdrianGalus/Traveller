@@ -6,8 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import traveller.dtos.UserDTO;
 import traveller.services.TourService;
 
 @Controller
@@ -18,21 +16,14 @@ public class ShowTourController {
     private TourService tourService;
 
     @GetMapping("/all")
-    public String showAllTours(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
+    public String showAllTours(Model model) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("allTours", tourService.findAllTours());
         return "all-tours";
     }
     @GetMapping("/{dto}/{id}")
-    public String showAllToursByDtoId(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                      Model model, @PathVariable String dto, @PathVariable Long id) {
+    public String showAllToursByDtoId(Model model, @PathVariable String dto, @PathVariable Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         switch(dto) {
             case "coachDTO":
                 model.addAttribute("allTours", tourService.findAllToursByCoachId(id));

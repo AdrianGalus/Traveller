@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
 import traveller.dtos.DriverDTO;
-import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
 import traveller.services.DriverService;
 import javax.validation.Valid;
@@ -28,22 +27,14 @@ public class EditCoachController {
         return driverService.findAllDrivers();
     }
     @GetMapping("/{id}")
-    public String editCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                            @PathVariable("id") Long id) {
+    public String editCoach(Model model, @PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("coachForm", coachService.findDetails(id));
         return "edit-coach";
     }
     @PostMapping("/{id}")
-    public String confirmEditCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                   @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
+    public String confirmEditCoach(@ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "edit-coach";
         }

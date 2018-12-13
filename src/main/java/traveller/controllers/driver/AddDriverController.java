@@ -21,22 +21,15 @@ public class AddDriverController {
     CoachService coachService;
 
     @GetMapping
-    public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
+    public String addCoach(Model model) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("availableCoaches", coachService.findAvailableCoaches());
         model.addAttribute("driverForm", new DriverDTO());
         return "add-driver";
     }
     @PostMapping
-    public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
-                                @ModelAttribute("driverForm") @Valid DriverDTO form, BindingResult result) {
+    public String addCoach(@ModelAttribute("driverForm") @Valid DriverDTO form, BindingResult result) {
 
-        if(loggedUSer == null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "add-driver";
         }

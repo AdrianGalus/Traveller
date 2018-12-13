@@ -19,21 +19,14 @@ public class LoginController {
     LoginService loginService;
 
     @GetMapping
-    public String login(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
+    public String login(Model model) {
 
-        if(loggedUser != null) {
-            return "redirect:/";
-        }
         model.addAttribute("userForm", new UserLoginDTO());
         return "login";
     }
     @PostMapping
-    public String login(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-            @ModelAttribute("userForm") @Valid UserLoginDTO form, BindingResult result, HttpSession session) {
+    public String login(@ModelAttribute("userForm") @Valid UserLoginDTO form, BindingResult result, HttpSession session) {
 
-        if(loggedUser != null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "login";
         }

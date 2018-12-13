@@ -27,12 +27,8 @@ public class TourController {
         return customerService.findAllCustomers();
     }
     @GetMapping("/check/{id}")
-    public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                            @PathVariable(value = "id") Long id) {
+    public String checkTour(Model model, @PathVariable(value = "id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         if(id == 0) {
             model.addAttribute("tourForm", new TourDTO());
         }
@@ -42,13 +38,9 @@ public class TourController {
         return "check-tour";
     }
     @PostMapping("/check/{id}")
-    public String checkTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                        @ModelAttribute("tourForm") @Valid TourDTO form, BindingResult result, HttpSession session,
-                        @PathVariable(value = "id", required = false) Long id) {
+    public String checkTour(Model model, @ModelAttribute("tourForm") @Valid TourDTO form, BindingResult result,
+                            HttpSession session, @PathVariable(value = "id", required = false) Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "check-tour";
         }

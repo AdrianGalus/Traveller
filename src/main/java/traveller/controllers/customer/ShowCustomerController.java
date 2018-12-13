@@ -5,8 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
-import traveller.dtos.UserDTO;
 import traveller.services.CustomerService;
 
 @Controller
@@ -17,12 +15,8 @@ public class ShowCustomerController {
     CustomerService customerService;
 
     @GetMapping("/all")
-    public String showAllCustomers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                   Model model) {
+    public String showAllCustomers(Model model) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("allCustomers", customerService.findAllCustomers());
         return "all-customers";
     }

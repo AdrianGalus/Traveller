@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CoachDTO;
-import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
 import javax.validation.Valid;
 
@@ -18,21 +17,14 @@ public class AddCoachController {
     CoachService coachService;
 
     @GetMapping
-    public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model) {
+    public String addCoach(Model model) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("coachForm", new CoachDTO());
         return "add-coach";
     }
     @PostMapping
-    public String addCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUSer,
-                                @ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
+    public String addCoach(@ModelAttribute("coachForm") @Valid CoachDTO form, BindingResult result) {
 
-        if(loggedUSer == null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "add-coach";
         }

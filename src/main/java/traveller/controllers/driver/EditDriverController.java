@@ -21,23 +21,16 @@ public class EditDriverController {
     CoachService coachService;
 
     @GetMapping("/{id}")
-    public String editDriver(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                             @PathVariable("id") Long id) {
+    public String editDriver(Model model, @PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("availableCoaches", coachService.findAvailableCoaches());
         model.addAttribute("driverForm", driverService.findDetails(id));
         return "edit-driver";
     }
     @PostMapping("/{id}")
-    public String confirmEditDriver(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                    @ModelAttribute("driverForm") @Valid DriverDTO form, BindingResult result, @PathVariable("id") Long id) {
+    public String confirmEditDriver(Model model, @ModelAttribute("driverForm") @Valid DriverDTO form,
+                                    BindingResult result, @PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "edit-driver";
         }

@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import traveller.dtos.CustomerDTO;
-import traveller.dtos.UserDTO;
 import traveller.services.CustomerService;
 import javax.validation.Valid;
 
@@ -18,22 +17,14 @@ public class EditCustomerController {
     CustomerService customerService;
 
     @GetMapping("/{id}")
-    public String editCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                               @PathVariable("id") Long id) {
+    public String editCustomer(Model model, @PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("customerForm", customerService.findDetails(id));
         return "edit-customer";
     }
     @PostMapping("/{id}")
-    public String confirmEditCustomer(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                      @ModelAttribute("customerForm") @Valid CustomerDTO form, BindingResult result) {
+    public String confirmEditCustomer(@ModelAttribute("customerForm") @Valid CustomerDTO form, BindingResult result) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         if(result.hasErrors()) {
             return "edit-customer";
         }

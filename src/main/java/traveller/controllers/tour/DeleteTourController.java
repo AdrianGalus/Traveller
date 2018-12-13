@@ -18,23 +18,15 @@ public class DeleteTourController {
     TourService tourService;
 
     @GetMapping("/{id}")
-    public String deleteTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                             @PathVariable("id") Long id) {
+    public String deleteTour(Model model, @PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("id", id);
         model.addAttribute("type", "tour");
         return "confirm-delete";
     }
     @GetMapping("/confirm/{id}")
-    public String confirmDeleteTour(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                    @PathVariable("id") Long id) {
+    public String confirmDeleteTour(@PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         tourService.deleteTour(id);
         return "redirect:/";
     }

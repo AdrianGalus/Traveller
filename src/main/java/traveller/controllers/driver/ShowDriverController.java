@@ -18,22 +18,14 @@ public class ShowDriverController {
     DriverService driverService;
 
     @GetMapping("/all")
-    public String showAllDrivers(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                 Model model) {
+    public String showAllDrivers(Model model) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         model.addAttribute("allDrivers", driverService.findAllDrivers());
         return "all-drivers";
     }
     @GetMapping("/{dto}/{id}")
-    public String showAllDriversByDtoId(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                        Model model, @PathVariable String dto, @PathVariable Long id) {
+    public String showAllDriversByDtoId(Model model, @PathVariable String dto, @PathVariable Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         switch(dto) {
             case "tourDTO":
                 model.addAttribute("allDrivers", driverService.findAllDriversByTourId(id));

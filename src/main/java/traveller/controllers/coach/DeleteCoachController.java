@@ -6,9 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttribute;
 import traveller.dtos.TourDTO;
-import traveller.dtos.UserDTO;
 import traveller.services.CoachService;
 import traveller.services.TourService;
 import java.util.List;
@@ -23,12 +21,8 @@ public class DeleteCoachController {
     TourService tourService;
 
     @GetMapping("/{id}")
-    public String deleteCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser, Model model,
-                              @PathVariable("id") Long id) {
+    public String deleteCoach(Model model, @PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         List<TourDTO> tours = tourService.findAllToursByCoachId(id);
         if(tours.size() > 0) {
             model.addAttribute("error", "Ten autobus ma zaplanowane wycieczki");
@@ -39,12 +33,8 @@ public class DeleteCoachController {
         return "confirm-delete";
     }
     @GetMapping("/confirm/{id}")
-    public String confirmDeleteCoach(@SessionAttribute(value = "loggedUser", required = false) UserDTO loggedUser,
-                                     @PathVariable("id") Long id) {
+    public String confirmDeleteCoach(@PathVariable("id") Long id) {
 
-        if(loggedUser == null) {
-            return "redirect:/";
-        }
         coachService.deleteCoach(id);
         return "redirect:/";
     }
