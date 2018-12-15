@@ -3,7 +3,6 @@ package traveller.model.tour;
 import traveller.model.coach.Coach;
 import traveller.model.customer.Customer;
 import traveller.model.driver.Driver;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class Tour {
     private LocalDateTime arrivalDate;
     @ManyToOne
     private Customer customer;
-    @ManyToMany(mappedBy = "tours")
+    @ManyToMany
     private List<Driver> drivers = new ArrayList<>();
 
     public Long getId() {

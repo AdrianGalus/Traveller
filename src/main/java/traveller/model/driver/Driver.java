@@ -2,7 +2,6 @@ package traveller.model.driver;
 
 import traveller.model.tour.Tour;
 import traveller.model.coach.Coach;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Driver {
     private String lastName;
     @ManyToOne
     private Coach coach;
-    @ManyToMany
+    @ManyToMany(mappedBy = "drivers")
     private List<Tour> tours = new ArrayList<>();
 
     public Long getId() {
